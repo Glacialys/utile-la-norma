@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comptoir Savoyard - Commandes & Retrait</title>
+    <title>Utile La Norma - Commandes & Retrait</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -19,7 +19,7 @@
             <div class="flex items-center space-x-2">
                 <i class="fa-solid fa-fire-burner text-2xl text-amber-400"></i>
                 <div>
-                    <h1 class="font-bold text-lg tracking-wide">Comptoir Savoyard</h1>
+                    <h1 class="font-bold text-lg tracking-wide">Utile La Norma</h1>
                     <p class="text-xs text-amber-200">Retrait en magasin - Fondues & Raclettes</p>
                 </div>
             </div>
@@ -60,14 +60,6 @@
                 </h2>
 
                 <div id="products-list" class="space-y-4">
-                    <!-- Généré par JS -->
-                </div>
-
-                <h2 class="text-lg font-bold text-stone-900 flex items-center gap-2 border-b pb-2 pt-4">
-                    <i class="fa-solid fa-wine-bottle text-amber-800"></i> Boissons & Offre Spéciale
-                </h2>
-
-                <div id="drinks-list" class="space-y-4">
                     <!-- Généré par JS -->
                 </div>
             </div>
@@ -144,7 +136,7 @@
             <div id="admin-dashboard" class="hidden space-y-6">
                 <div class="flex justify-between items-center border-b pb-3">
                     <div>
-                        <h3 class="font-bold text-base text-stone-900">Espace Gestion - Commandes Magasin</h3>
+                        <h3 class="font-bold text-base text-stone-900">Espace Gestion - Commandes Utile La Norma</h3>
                         <p class="text-xs text-stone-500">Synchronisé en direct avec vos clients</p>
                     </div>
                     <button onclick="logoutAdmin()" class="text-xs text-rose-700 hover:underline font-medium">Déconnexion</button>
@@ -185,14 +177,10 @@
 
         let catalog = {
             products: [
-                { id: 'fondue', name: 'Fondue', price: 6.00, min: 2, desc: '50% Beaufort, 25% Montagnard (Gruyère de Savoie), 25% Comté. Le pain est offert.' },
-                { id: 'fondue-gourmande', name: 'Fondue gourmande', price: 9.00, min: 2, desc: 'Même base de fromages + 2 tranches de pavé au cèpe, 2 tranches de pavé piment, 2 tranches de bacon et 2 tranches de coppa de Savoie. Le pain est offert.' },
-                { id: 'raclette', name: 'Raclette', price: 11.00, min: 2, desc: '200g de raclette de Savoie, 1 tranche de jambon blanc, 1 tranche de jambon sec de Savoie, 2 tranches de coppa, 2 tranches de bacon, 2 tranches de rosette et 2 tranches de viande des Grisons.' },
-                { id: 'raclette-mixte', name: 'Raclette mixte', price: 11.00, min: 2, desc: '200g de raclette de Savoie, 1 tranche de jambon blanc, 1 tranche de jambon sec de Savoie, 2 tranches de coppa, 2 tranches de bacon, 2 tranches de rosette et 2 tranches de viande des Grisons.' }
-            ],
-            drinks: [
-                { id: 'vin-savoie', name: 'Bouteille Vin Blanc de Savoie (75cl)', price: 15.00, discount: 0.10, desc: 'Offre spéciale : -10% de remise sur la bouteille de 75cl.' },
-                { id: 'eau-alpes', name: 'Eau minérale des Alpes (1L)', price: 3.50, desc: 'Plate ou gazeuse.' }
+                { id: 'fondue', name: 'Fondue', price: 6.00, desc: '50% Beaufort, 25% Montagnard (Gruyère de Savoie), 25% Comté. Le pain est offert.' },
+                { id: 'fondue-gourmande', name: 'Fondue gourmande', price: 9.00, desc: 'Même base de fromages + 2 tranches de pavé au cèpe, 2 tranches de pavé piment, 2 tranches de bacon et 2 tranches de coppa de Savoie. Le pain est offert.' },
+                { id: 'raclette', name: 'Raclette', price: 11.00, desc: '200g de raclette de Savoie, 1 tranche de jambon blanc, 1 tranche de jambon sec de Savoie, 2 tranches de coppa de Savoie, 2 tranches de bacon de Savoie, 2 tranches de rosette et 2 tranches de viande des Grisons.' },
+                { id: 'raclette-mixte', name: 'Raclette mixte', price: 11.00, desc: '200g de raclette de Savoie, 1 tranche de jambon blanc, 1 tranche de jambon sec de Savoie, 2 tranches de coppa de Savoie, 2 tranches de bacon de Savoie, 2 tranches de rosette et 2 tranches de viande des Grisons.' }
             ]
         };
 
@@ -209,35 +197,13 @@
                             <span class="text-amber-900 font-bold text-sm">${p.price.toFixed(2)} € <span class="text-xs font-normal text-stone-500">/ pers.</span></span>
                         </div>
                         <p class="text-xs text-stone-600 mt-1">${p.desc}</p>
-                        <p class="text-[11px] text-amber-800 font-medium mt-1"><i class="fa-solid fa-users text-[10px] mr-1"></i> Minimum ${p.min} personnes</p>
                     </div>
                     <div class="flex items-center justify-between pt-2 border-t border-stone-100">
                         <div class="flex items-center gap-2">
                             <span class="text-xs text-stone-500">Personnes :</span>
-                            <input type="number" id="qty-${p.id}" min="${p.min}" value="${p.min}" class="w-16 text-center text-xs p-1 border rounded-lg">
+                            <input type="number" id="qty-${p.id}" min="1" value="1" class="w-16 text-center text-xs p-1 border rounded-lg">
                         </div>
                         <button onclick="addToCart('${p.id}')" class="bg-amber-900 hover:bg-amber-800 text-white text-xs px-3 py-1.5 rounded-lg font-medium transition flex items-center gap-1">
-                            <i class="fa-solid fa-plus text-[10px]"></i> Ajouter
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-
-            const drinkContainer = document.getElementById('drinks-list');
-            drinkContainer.innerHTML = catalog.drinks.map(d => `
-                <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between gap-3">
-                    <div>
-                        <div class="flex justify-between items-start">
-                            <h3 class="font-bold text-sm text-stone-900">${d.name}</h3>
-                            <div class="text-right">
-                                ${d.discount ? `<span class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold mr-1">-10%</span>` : ''}
-                                <span class="text-amber-900 font-bold text-sm">${d.discount ? (d.price * (1 - d.discount)).toFixed(2) : d.price.toFixed(2)} €</span>
-                            </div>
-                        </div>
-                        <p class="text-xs text-stone-600 mt-1">${d.desc}</p>
-                    </div>
-                    <div class="flex items-center justify-end pt-2 border-t border-stone-100">
-                        <button onclick="addDrinkToCart('${d.id}')" class="bg-amber-900 hover:bg-amber-800 text-white text-xs px-3 py-1.5 rounded-lg font-medium transition flex items-center gap-1">
                             <i class="fa-solid fa-plus text-[10px]"></i> Ajouter
                         </button>
                     </div>
@@ -248,10 +214,10 @@
         function addToCart(id) {
             const product = catalog.products.find(p => p.id === id);
             const qtyInput = document.getElementById(`qty-${id}`);
-            const qty = parseInt(qtyInput.value) || product.min;
+            const qty = parseInt(qtyInput.value) || 1;
 
-            if (qty < product.min) {
-                alert(`Le minimum pour ${product.name} est de ${product.min} personnes.`);
+            if (qty < 1) {
+                alert("Veuillez sélectionner au moins 1 personne.");
                 return;
             }
 
@@ -260,18 +226,6 @@
                 existing.qty += qty;
             } else {
                 cart.push({ id: product.id, name: product.name, price: product.price, qty: qty, type: 'formula' });
-            }
-            updateCartDisplay();
-        }
-
-        function addDrinkToCart(id) {
-            const drink = catalog.drinks.find(d => d.id === id);
-            const finalPrice = drink.discount ? drink.price * (1 - drink.discount) : drink.price;
-            const existing = cart.find(item => item.id === id);
-            if (existing) {
-                existing.qty += 1;
-            } else {
-                cart.push({ id: drink.id, name: drink.name, price: finalPrice, qty: 1, type: 'drink' });
             }
             updateCartDisplay();
         }
@@ -302,7 +256,7 @@
                     <div class="py-2 flex justify-between items-center text-xs">
                         <div>
                             <p class="font-bold text-stone-900">${item.name}</p>
-                            <p class="text-[11px] text-stone-500">${item.qty} ${item.type === 'formula' ? 'pers.' : 'unité(s)'} × ${item.price.toFixed(2)} €</p>
+                            <p class="text-[11px] text-stone-500">${item.qty} pers. × ${item.price.toFixed(2)} €</p>
                         </div>
                         <div class="flex items-center gap-3">
                             <span class="font-bold text-amber-900">${itemTotal.toFixed(2)} €</span>
