@@ -1,0 +1,390 @@
+
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Utile La Norma">
+  <meta name="theme-color" content="#163A5C">
+  <title>Utile La Norma — Fondues & Raclettes de Savoie | Réservation en ligne</title>
+
+  <!-- Génération dynamique de l'icône Web App (512x512) et du manifeste -->
+  <script>
+    (function generateUtileAppIcon() {
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width = 512;
+        canvas.height = 512;
+        const ctx = canvas.getContext('2d');
+
+        // Fond dégradé alpin
+        const bgGrad = ctx.createLinearGradient(0, 0, 0, 512);
+        bgGrad.addColorStop(0, '#0F2942');
+        bgGrad.addColorStop(0.65, '#1D4E7A');
+        bgGrad.addColorStop(1, '#E2EEF8');
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(0, 0, 512, 512);
+
+        // Montagnes enneigées en arrière-plan
+        ctx.fillStyle = '#B8D4EA';
+        ctx.beginPath();
+        ctx.moveTo(0, 390);
+        ctx.lineTo(145, 225);
+        ctx.lineTo(285, 390);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.fillStyle = '#FFFFFF';
+        ctx.beginPath();
+        ctx.moveTo(185, 390);
+        ctx.lineTo(355, 200);
+        ctx.lineTo(512, 390);
+        ctx.closePath();
+        ctx.fill();
+
+        // Sol enneigé
+        ctx.fillStyle = '#F8FAFC';
+        ctx.fillRect(0, 375, 512, 137);
+
+        // Cercle turquoise inspiré du logo
+        ctx.strokeStyle = '#2BB5A3';
+        ctx.lineWidth = 22;
+        ctx.beginPath();
+        ctx.arc(256, 230, 165, 0.25 * Math.PI, 1.85 * Math.PI);
+        ctx.stroke();
+
+        // Grand U rouge
+        ctx.font = '900 175px Arial, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle = '#D9232E';
+        ctx.fillText('U', 256, 232);
+
+        // Bandeau texte Utile La Norma
+        ctx.fillStyle = '#0F2942';
+        ctx.font = '900 46px Arial, sans-serif';
+        ctx.fillText('UTILE', 256, 424);
+        ctx.fillStyle = '#D9232E';
+        ctx.font = '800 32px Arial, sans-serif';
+        ctx.fillText('LA NORMA', 256, 468);
+
+        const iconDataUrl = canvas.toDataURL('image/png');
+        window.__UTILE_APP_ICON__ = iconDataUrl;
+
+        const favicon = document.createElement('link');
+        favicon.rel = 'icon';
+        favicon.type = 'image/png';
+        favicon.href = iconDataUrl;
+        document.head.appendChild(favicon);
+
+        const appleIcon = document.createElement('link');
+        appleIcon.rel = 'apple-touch-icon';
+        appleIcon.href = iconDataUrl;
+        document.head.appendChild(appleIcon);
+
+        const manifest = {
+          name: 'Utile La Norma — Fondues & Raclettes',
+          short_name: 'Utile La Norma',
+          start_url: '.',
+          display: 'standalone',
+          background_color: '#F1F5F9',
+          theme_color: '#163A5C',
+          icons: [{ src: iconDataUrl, sizes: '512x512', type: 'image/png' }]
+        };
+        const manifestBlob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+        const manifestLink = document.createElement('link');
+        manifestLink.rel = 'manifest';
+        manifestLink.href = URL.createObjectURL(manifestBlob);
+        document.head.appendChild(manifestLink);
+      } catch (e) {}
+    })();
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #F0F6FC;
+      color: #0F172A;
+    }
+    h1, h2, h3, .font-display {
+      font-family: 'Montserrat', sans-serif;
+    }
+    .alpine-bg {
+      background:
+        radial-gradient(circle at 15% 12%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 42%),
+        radial-gradient(circle at 85% 8%, rgba(224, 242, 254, 0.85) 0%, rgba(224, 242, 254, 0) 45%),
+        linear-gradient(180deg, #DCEBFA 0%, #EDF5FC 34%, #F8FAFC 100%);
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 10px 30px -10px rgba(15, 41, 66, 0.10);
+    }
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-4px); }
+    }
+    .animate-float {
+      animation: floatSlow 4.5s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="alpine-bg min-h-screen flex flex-col">
+
+  <!-- Barre supérieure utilitaire -->
+  <nav class="sticky top-0 z-40 bg-white/85 backdrop-blur-md border-b border-sky-100 px-3 sm:px-6 py-2.5">
+    <div class="max-w-5xl mx-auto flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-red-600 text-white font-display font-black text-base shadow-sm">U</span>
+        <div class="leading-tight">
+          <span class="font-display font-extrabold text-slate-900 text-sm sm:text-base tracking-tight block">Utile La Norma</span>
+          <span class="text-[11px] text-sky-700 font-semibold hidden sm:inline">Traiteur Montagnard & Prêt d'appareils</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <button type="button" onclick="openInstallModal()" class="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-bold bg-sky-50 hover:bg-sky-100 text-sky-800 border border-sky-200 transition cursor-pointer">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+          <span>Installer l'icône</span>
+        </button>
+        <button type="button" onclick="openQrModal()" class="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-sm transition cursor-pointer">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm10 4h2v2h-2v-2zm4-4h2v6h-2v-6zm-4 0h2v2h-2v-2z"/></svg>
+          <span>QR Code</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- En-tête Alpine Enneigé avec Logo Utile La Norma -->
+  <header class="relative overflow-hidden pt-5 pb-8 sm:pt-8 sm:pb-12 px-4">
+    <!-- Décor montagnes enneigées en SVG -->
+    <svg class="absolute inset-x-0 bottom-0 w-full h-44 sm:h-56 pointer-events-none opacity-85" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path fill="#C7E0F6" d="M0,220 L180,95 L340,210 L540,70 L760,215 L980,85 L1210,205 L1440,105 L1440,320 L0,320 Z"></path>
+      <path fill="#FFFFFF" d="M180,95 L132,135 L162,132 L180,150 L202,130 L226,136 Z"></path>
+      <path fill="#FFFFFF" d="M540,70 L482,118 L518,114 L540,136 L568,113 L596,119 Z"></path>
+      <path fill="#FFFFFF" d="M980,85 L924,132 L958,128 L980,148 L1006,127 L1034,133 Z"></path>
+      <path fill="#E8F3FC" d="M0,255 C320,215 580,285 920,235 C1160,200 1320,245 1440,230 L1440,320 L0,320 Z"></path>
+    </svg>
+
+    <div class="relative max-w-4xl mx-auto text-center">
+      <!-- Logo Utile La Norma sans fond noir -->
+      <div class="mx-auto w-56 sm:w-64 mb-2 animate-float drop-shadow-md">
+        <svg viewBox="0 0 420 265" class="w-full h-auto overflow-visible" role="img" aria-label="Logo Utile La Norma">
+          <defs>
+            <clipPath id="uClipPath">
+              <path d="M 114 92 L 132 92 L 132 126 C 132 135 148 135 148 126 L 148 92 L 166 92 L 166 127 C 166 150 114 150 114 127 Z"/>
+            </clipPath>
+          </defs>
+
+          <!-- Cercle turquoise -->
+          <path d="M 248 48 A 108 108 0 1 0 288 228" fill="none" stroke="#2BB5A3" stroke-width="13" stroke-linecap="round"/>
+
+          <!-- Montagne enneigée dans le logo -->
+          <polygon points="88,155 152,72 225,155" fill="#DCE4EC" stroke="#64748B" stroke-width="2"/>
+          <polygon points="152,72 126,106 143,102 152,114 164,101 178,106" fill="#FFFFFF"/>
+
+          <!-- Sapins -->
+          <g fill="#2E7D32" stroke="#1B5E20" stroke-width="1.2">
+            <polygon points="94,158 103,132 112,158"/>
+            <polygon points="110,165 120,136 130,165"/>
+            <polygon points="82,175 93,144 104,175"/>
+            <polygon points="124,176 134,148 144,176"/>
+          </g>
+
+          <!-- Prairies -->
+          <ellipse cx="185" cy="196" rx="74" ry="26" fill="#7CB342" stroke="#558B2F" stroke-width="1.5"/>
+
+          <!-- Chalet savoyard avec toit enneigé -->
+          <rect x="184" y="148" width="44" height="28" fill="#A16227" stroke="#5D3A1A" stroke-width="1.8"/>
+          <polygon points="178,149 206,131 234,149" fill="#FFFFFF" stroke="#64748B" stroke-width="1.8"/>
+          <rect x="200" y="158" width="10" height="18" fill="#5D3A1A"/>
+
+          <!-- Vaches -->
+          <g>
+            <rect x="162" y="182" width="26" height="14" rx="4" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <circle cx="171" cy="187" r="3" fill="#1E293B"/>
+            <circle cx="181" cy="190" r="2.5" fill="#1E293B"/>
+            <circle cx="190" cy="183" r="5" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <line x1="166" y1="196" x2="166" y2="204" stroke="#1E293B" stroke-width="2"/>
+            <line x1="184" y1="196" x2="184" y2="204" stroke="#1E293B" stroke-width="2"/>
+          </g>
+
+          <!-- Meule de fromage -->
+          <g transform="translate(212, 74)">
+            <circle cx="14" cy="14" r="13" fill="#F6C453" stroke="#92400E" stroke-width="1.6"/>
+            <polygon points="14,14 27,10 25,21" fill="#FEF3C7" stroke="#92400E" stroke-width="1.2"/>
+          </g>
+
+          <!-- U proprement dessiné (moitié haute blanche, moitié basse rouge) -->
+          <g clip-path="url(#uClipPath)">
+            <rect x="110" y="90" width="60" height="27" fill="#FFFFFF"/>
+            <rect x="110" y="117" width="60" height="35" fill="#D9232E"/>
+          </g>
+          <path d="M 114 92 L 132 92 L 132 126 C 132 135 148 135 148 126 L 148 92 L 166 92 L 166 127 C 166 150 114 150 114 127 Z" fill="none" stroke="#1E293B" stroke-width="2" stroke-linejoin="round"/>
+
+          <!-- t tracé proprement -->
+          <path d="M 183 84 L 183 133 C 183 141 188 144 195 144 L 198 144 L 198 134 L 196 134 C 194 134 193 133 193 130 L 193 111 L 199 111 L 199 102 L 193 102 L 193 84 Z" fill="#86EFAC" stroke="#14532D" stroke-width="1.8" stroke-linejoin="round"/>
+
+          <!-- i tracé proprement -->
+          <circle cx="211" cy="91" r="6" fill="#86EFAC" stroke="#14532D" stroke-width="1.8"/>
+          <rect x="206" y="103" width="10" height="41" rx="3" fill="#86EFAC" stroke="#14532D" stroke-width="1.8"/>
+
+          <!-- Saucisson formant le l avec bague Savoie -->
+          <line x1="234" y1="54" x2="234" y2="74" stroke="#334155" stroke-width="2.2"/>
+          <rect x="225" y="74" width="18" height="72" rx="9" fill="#8D7B74" stroke="#3E2723" stroke-width="2"/>
+          <rect x="225" y="101" width="18" height="16" fill="#D9232E"/>
+          <rect x="232" y="103" width="4" height="12" fill="#FFFFFF"/>
+          <rect x="228" y="107" width="12" height="4" fill="#FFFFFF"/>
+
+          <!-- e -->
+          <text x="251" y="142" font-family="Montserrat, sans-serif" font-weight="900" font-size="52" fill="#86EFAC" stroke="#14532D" stroke-width="2">e</text>
+
+          <!-- Écusson Savoie -->
+          <g transform="translate(292, 92)">
+            <path d="M0,0 H18 V12 C18,19 9,23 9,23 C9,23 0,19 0,12 Z" fill="#D9232E" stroke="#7F1D1D" stroke-width="1.4"/>
+            <rect x="7.5" y="3" width="3" height="15" fill="#FFFFFF"/>
+            <rect x="3" y="9" width="12" height="3" fill="#FFFFFF"/>
+          </g>
+
+          <!-- Mention La norma -->
+          <text x="252" y="182" font-family="Montserrat, sans-serif" font-style="italic" font-weight="800" font-size="24" fill="#0F2942">La norma</text>
+        </svg>
+      </div>
+
+      <!-- Sous-titre Fondue ou Raclette -->
+      <h1 class="text-2xl sm:text-4xl font-display font-black text-slate-900 tracking-tight">
+        Fondue <span class="text-red-600">ou</span> Raclette
+      </h1>
+
+      <!-- Bandeau horaires de retrait & avantage vin -->
+      <div class="mt-4 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm font-bold">
+        <div class="inline-flex items-center gap-2 bg-white/95 border border-sky-200 text-slate-800 px-3.5 py-2 rounded-xl shadow-sm">
+          <span>🕐</span>
+          <span>Récupération : <strong>Midi dès 11h00</strong> ou <strong>Soir 16h00 – 19h00</strong></span>
+        </div>
+        <div class="inline-flex items-center gap-2 bg-red-50 border border-red-200 text-red-800 px-3.5 py-2 rounded-xl shadow-sm">
+          <span>🍷</span>
+          <span><strong>-10 % en magasin</strong> sur le vin de Savoie 75 cl avec votre commande</span>
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <a href="#reservation" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-display font-extrabold text-sm sm:text-base px-6 py-3.5 rounded-2xl shadow-lg shadow-red-600/25 transition transform active:scale-95">
+          <span>Réserver ma fondue ou raclette</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-5xl w-full mx-auto px-4 pb-16 space-y-10">
+
+    <!-- Section 1 : Les 4 Formules avec ingrédients les uns sous les autres -->
+    <section aria-labelledby="titre-formules">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 mb-4">
+        <div>
+          <span class="text-xs font-extrabold uppercase tracking-wider text-sky-700">Nos Plateaux & Préparations</span>
+          <h2 id="titre-formules" class="text-xl sm:text-2xl font-extrabold text-slate-900">Choisissez votre formule</h2>
+        </div>
+        <p class="text-xs text-slate-600 font-semibold bg-amber-50 border border-amber-200 px-3 py-1.5 rounded-lg">
+          🔌 Prêt d'appareil gratuit sur demande • <strong>Une caution de 50 € en espèces sera demandée.</strong>
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+
+        <!-- Formule 1 : La Fondue -->
+        <article class="glass-card rounded-2xl p-5 flex flex-col justify-between border-t-4 border-amber-500">
+          <div>
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <span class="inline-block text-[11px] font-extrabold uppercase tracking-wider bg-amber-100 text-amber-900 px-2.5 py-0.5 rounded-full mb-1">Fondue Savoyarde</span>
+                <h3 class="text-lg sm:text-xl font-extrabold text-slate-900">La Fondue</h3>
+              </div>
+              <div class="text-right">
+                <span class="text-2xl font-display font-black text-red-600">6 €</span>
+                <span class="block text-[11px] font-bold text-slate-500">/ personne</span>
+              </div>
+            </div>
+
+            <div class="mt-3.5 space-y-2 text-sm text-slate-700">
+              <div class="font-bold text-amber-800 text-xs uppercase tracking-wide">🧀 Mélange fromages râpés (200 g / pers.) :</div>
+              <ul class="space-y-1 pl-3 border-l-2 border-amber-200 text-xs sm:text-sm">
+                <li>• 50 % Beaufort</li>
+                <li>• 25 % Fromage Montagnard</li>
+                <li>• 25 % Comté</li>
+              </ul>
+
+              <div class="font-bold text-slate-800 text-xs uppercase tracking-wide pt-1">🥖 Accompagnement & matériel :</div>
+              <ul class="space-y-1 pl-3 border-l-2 border-sky-200 text-xs sm:text-sm">
+                <li>• <strong>Baguette coupée en cubes offerte</strong></li>
+                <li>• Prêt d'appareil à fondue inclus <span class="text-xs text-slate-500">(caution 50 € en espèces)</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs font-semibold text-slate-500">Retrait midi dès 11h ou soir 16h-19h</span>
+            <button type="button" onclick="quickSelectFormula('fondue')" class="text-xs font-extrabold bg-slate-900 hover:bg-red-600 text-white px-3.5 py-2 rounded-xl transition cursor-pointer">
+              + Ajouter
+            </button>
+          </div>
+        </article>
+
+        <!-- Formule 2 : La Fondue Gourmande -->
+        <article class="glass-card rounded-2xl p-5 flex flex-col justify-between border-t-4 border-red-600 relative">
+          <div>
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <span class="inline-block text-[11px] font-extrabold uppercase tracking-wider bg-red-100 text-red-800 px-2.5 py-0.5 rounded-full mb-1">Fondue + Charcuterie</span>
+                <h3 class="text-lg sm:text-xl font-extrabold text-slate-900">La Fondue Gourmande</h3>
+              </div>
+              <div class="text-right">
+                <span class="text-2xl font-display font-black text-red-600">9 €</span>
+                <span class="block text-[11px] font-bold text-slate-500">/ personne</span>
+              </div>
+            </div>
+
+            <div class="mt-3.5 space-y-2 text-sm text-slate-700">
+              <div class="font-bold text-amber-800 text-xs uppercase tracking-wide">🧀 Fromages & pain (200 g / pers.) :</div>
+              <ul class="space-y-1 pl-3 border-l-2 border-amber-200 text-xs sm:text-sm">
+                <li>• 50 % Beaufort</li>
+                <li>• 25 % Fromage Montagnard</li>
+                <li>• 25 % Comté</li>
+                <li>• <strong>Baguette coupée en cubes offerte</strong></li>
+              </ul>
+
+              <div class="font-bold text-red-700 text-xs uppercase tracking-wide pt-1">🥓 Charcuterie (10 tranches / pers.) :</div>
+              <ul class="space-y-1 pl-3 border-l-2 border-red-200 text-xs sm:text-sm">
+                <li>• 2 tranches de pavé au cèpe</li>
+                <li>• 2 tranches de pavé au piment</li>
+                <li>• 2 tranches de bacon de Savoie</li>
+                <li>• 2 tranches de coppa de Savoie</li>
+                <li>• 2 tranches de rosette</li>
+              </ul>
+
+              <div class="text-xs text-sky-800 font-semibold pt-1">
+                🔌 Prêt d'appareil à fondue inclus <span class="text-slate-500">(caution 50 € en espèces)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs font-semibold text-slate-500">Retrait midi dès 11h ou soir 16h-19h</span>
+            <button type="button" onclick="quickSelectFormula('fondue_gourmande')" class="text-xs font-extrabold bg-red-600 hover:bg-red-700 text-white px-3.5 py-2 rounded-xl transition cursor-pointer">
+              + Ajouter
+            </button>
+          </div>
+        </article>
+
+        <!-- Formule 3 : La Raclette -->
+        <article class="glass-card rounde
