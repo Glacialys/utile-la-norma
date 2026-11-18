@@ -211,12 +211,12 @@
                         <div class="flex items-center gap-2">
                             <span class="text-xs text-stone-500">Personnes :</span>
                             <div class="flex items-center border rounded-lg bg-stone-50 overflow-hidden">
-                                <button onclick="adjustQty('${p.id}', -1)" class="px-2.5 py-1 text-stone-600 hover:bg-stone-200 font-bold text-xs">-</button>
+                                <button type="button" onclick="adjustQty('${p.id}', -1)" class="px-2.5 py-1 text-stone-600 hover:bg-stone-200 font-bold text-xs">-</button>
                                 <input type="number" id="qty-${p.id}" min="0" value="0" class="w-12 text-center text-xs p-1 bg-transparent focus:outline-none">
-                                <button onclick="adjustQty('${p.id}', 1)" class="px-2.5 py-1 text-stone-600 hover:bg-stone-200 font-bold text-xs">+</button>
+                                <button type="button" onclick="adjustQty('${p.id}', 1)" class="px-2.5 py-1 text-stone-600 hover:bg-stone-200 font-bold text-xs">+</button>
                             </div>
                         </div>
-                        <button onclick="addToCart('${p.id}')" class="bg-amber-900 hover:bg-amber-800 text-white text-xs px-3 py-1.5 rounded-lg font-medium transition flex items-center gap-1">
+                        <button type="button" onclick="addToCart('${p.id}')" class="bg-amber-900 hover:bg-amber-800 text-white text-xs px-3 py-1.5 rounded-lg font-medium transition flex items-center gap-1">
                             <i class="fa-solid fa-plus text-[10px]"></i> Ajouter
                         </button>
                     </div>
@@ -248,7 +248,7 @@
             } else {
                 cart.push({ id: product.id, name: product.name, price: product.price, qty: qty, type: 'formula' });
             }
-            qtyInput.value = 0; // Remet à 0 après ajout
+            qtyInput.value = 0; 
             updateCartDisplay();
         }
 
@@ -290,12 +290,12 @@
                         </div>
                         <div class="flex items-center gap-2">
                             <div class="flex items-center border rounded bg-stone-50">
-                                <button onclick="updateCartQty(${index}, -1)" class="px-1.5 py-0.5 text-stone-600 hover:bg-stone-200">-</button>
+                                <button type="button" onclick="updateCartQty(${index}, -1)" class="px-1.5 py-0.5 text-stone-600 hover:bg-stone-200">-</button>
                                 <span class="px-2 text-xs font-bold">${item.qty}</span>
-                                <button onclick="updateCartQty(${index}, 1)" class="px-1.5 py-0.5 text-stone-600 hover:bg-stone-200">+</button>
+                                <button type="button" onclick="updateCartQty(${index}, 1)" class="px-1.5 py-0.5 text-stone-600 hover:bg-stone-200">+</button>
                             </div>
                             <span class="font-bold text-amber-900 w-12 text-right">${itemTotal.toFixed(2)} €</span>
-                            <button onclick="removeFromCart(${index})" class="text-stone-400 hover:text-rose-600 ml-1"><i class="fa-solid fa-trash"></i></button>
+                            <button type="button" onclick="removeFromCart(${index})" class="text-stone-400 hover:text-rose-600 ml-1"><i class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
                 `;
@@ -313,8 +313,19 @@
             const phone = document.getElementById('client-phone').value.trim();
             const slot = document.getElementById('client-slot').value;
 
-            if (!name || !phone || !slot) {
-                alert("Veuillez renseigner votre nom, votre numéro de téléphone et choisir un créneau de retrait.");
+            if (!name) {
+                alert("Veuillez indiquer votre nom.");
+                document.getElementById('client-name').focus();
+                return;
+            }
+            if (!phone) {
+                alert("Veuillez indiquer votre numéro de téléphone.");
+                document.getElementById('client-phone').focus();
+                return;
+            }
+            if (!slot) {
+                alert("Veuillez choisir un créneau de retrait (Midi ou Soir).");
+                document.getElementById('client-slot').focus();
                 return;
             }
 
@@ -346,7 +357,7 @@
                 document.getElementById('order-success-banner').classList.remove('hidden');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }).catch(error => {
-                alert("Erreur lors de l'envoi de la commande : " + error.message);
+                alert("Erreur de connexion au serveur : " + error.message);
             });
         }
 
@@ -422,7 +433,7 @@
                                 <option ${o.status === 'En préparation' ? 'selected' : ''}>En préparation</option>
                                 <option ${o.status === 'Prête' ? 'selected' : ''}>Prête</option>
                             </select>
-                            <button onclick="deleteOrder('${o.firebaseKey}')" class="text-rose-600 hover:text-rose-800"><i class="fa-solid fa-trash"></i></button>
+                            <button type="button" onclick="deleteOrder('${o.firebaseKey}')" class="text-rose-600 hover:text-rose-800"><i class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
                 </div>
