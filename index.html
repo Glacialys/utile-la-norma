@@ -414,7 +414,8 @@
                         <span class="text-amber-900 bg-amber-100 px-2 py-0.5 rounded">Retrait à ${o.time}</span>
                     </div>
                     <div class="text-stone-600 text-[11px]">
-                        ${o.items.map(i => `• ${i.qty}x ${i.name}`).join('<br>')} ${o.notes ? `<br><em>Note : ${o.notes}</em>` : ''}
+                        ${o.items.map(i => `• ${i.qty}x ${i.name}`).join('<br>')}
+                        ${o.notes ? `<br><em>Note : ${o.notes}</em>` : ''}
                     </div>
                     <div class="flex justify-between items-center pt-2 border-t border-stone-200 text-[11px]">
                         <span class="font-bold">Total : ${o.total.toFixed(2)} €</span>
@@ -454,3 +455,11 @@
                 colorLight: "#ffffff",
                 correctLevel: QRCode.CorrectLevel.H
             });
+        }
+
+        window.onload = function() {
+            renderCatalog();
+        };
+    </script>
+</body>
+</html>
