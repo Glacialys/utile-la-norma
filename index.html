@@ -1,1496 +1,456 @@
-
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Utile La Norma">
-  <meta name="theme-color" content="#0f172a">
-  <title>Utile La Norma — Fondue ou Raclette</title>
-
-  <!-- Génération automatique de l'icône Web App (512x512) et du manifeste PWA -->
-  <script>
-    (function generateUtilePwaAssets() {
-      try {
-        const canvas = document.createElement('canvas');
-        canvas.width = 512;
-        canvas.height = 512;
-        const ctx = canvas.getContext('2d');
-
-        // Fond alpin bleu nuit
-        const grad = ctx.createLinearGradient(0, 0, 0, 512);
-        grad.addColorStop(0, '#0f172a');
-        grad.addColorStop(0.65, '#1e293b');
-        grad.addColorStop(1, '#334155');
-        ctx.fillStyle = grad;
-        ctx.fillRect(0, 0, 512, 512);
-
-        // Sommets enneigés
-        ctx.fillStyle = '#cbd5e1';
-        ctx.beginPath();
-        ctx.moveTo(0, 390);
-        ctx.lineTo(155, 220);
-        ctx.lineTo(295, 390);
-        ctx.closePath();
-        ctx.fill();
-
-        ctx.fillStyle = '#ffffff';
-        ctx.beginPath();
-        ctx.moveTo(190, 390);
-        ctx.lineTo(360, 195);
-        ctx.lineTo(512, 390);
-        ctx.closePath();
-        ctx.fill();
-
-        // Neige au sol
-        ctx.fillStyle = '#f8fafc';
-        ctx.fillRect(0, 372, 512, 140);
-
-        // Grand U bicolore (blanc en haut, rouge Utile en bas)
-        ctx.save();
-        ctx.font = '900 200px Arial, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.beginPath();
-        ctx.rect(0, 0, 512, 225);
-        ctx.clip();
-        ctx.fillStyle = '#ffffff';
-        ctx.fillText('U', 256, 225);
-        ctx.restore();
-
-        ctx.save();
-        ctx.font = '900 200px Arial, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.beginPath();
-        ctx.rect(0, 225, 512, 200);
-        ctx.clip();
-        ctx.fillStyle = '#dc2626';
-        ctx.fillText('U', 256, 225);
-        ctx.restore();
-
-        // Texte bas
-        ctx.fillStyle = '#0f172a';
-        ctx.font = '900 44px Arial, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('UTILE', 256, 422);
-        ctx.fillStyle = '#dc2626';
-        ctx.font = '800 30px Arial, sans-serif';
-        ctx.fillText('LA NORMA', 256, 466);
-
-        const iconUrl = canvas.toDataURL('image/png');
-        window.__UTILE_ICON_URL__ = iconUrl;
-
-        const favicon = document.createElement('link');
-        favicon.rel = 'icon';
-        favicon.type = 'image/png';
-        favicon.href = iconUrl;
-        document.head.appendChild(favicon);
-
-        const appleIcon = document.createElement('link');
-        appleIcon.rel = 'apple-touch-icon';
-        appleIcon.href = iconUrl;
-        document.head.appendChild(appleIcon);
-
-        const manifest = {
-          name: 'Utile La Norma — Fondue ou Raclette',
-          short_name: 'Utile La Norma',
-          start_url: '.',
-          display: 'standalone',
-          background_color: '#f8fafc',
-          theme_color: '#0f172a',
-          icons: [{ src: iconUrl, sizes: '512x512', type: 'image/png' }]
-        };
-        const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
-        const manifestLink = document.createElement('link');
-        manifestLink.rel = 'manifest';
-        manifestLink.href = URL.createObjectURL(blob);
-        document.head.appendChild(manifestLink);
-      } catch (e) {}
-    })();
-  </script>
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #f1f5f9;
-      color: #0f172a;
-    }
-    h1, h2, h3, .font-display {
-      font-family: 'Montserrat', sans-serif;
-    }
-    .snow-header {
-      background:
-        radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 45%),
-        radial-gradient(circle at 80% 10%, rgba(224, 242, 254, 0.9) 0%, rgba(224, 242, 254, 0) 45%),
-        linear-gradient(180deg, #dbeafe 0%, #eff6ff 48%, #f1f5f9 100%);
-    }
-    @media print {
-      body * {
-        visibility: hidden;
-      }
-      #printableStoreSheet, #printableStoreSheet * {
-        visibility: visible;
-      }
-      #printableStoreSheet {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        background: #ffffff !important;
-        color: #000000 !important;
-        padding: 12px !important;
-      }
-      .no-print {
-        display: none !important;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comptoir Savoyard - Commandes & Retrait</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Firebase SDK (Temps Réel) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="bg-amber-50/50 text-stone-800 font-sans min-h-screen flex flex-col justify-between">
 
-  <!-- Barre de navigation supérieure -->
-  <nav class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md text-white border-b border-slate-800 px-3 sm:px-6 py-3 no-print">
-    <div class="max-w-5xl mx-auto flex items-center justify-between gap-2">
-      <div class="flex items-center gap-2.5">
-        <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-red-600 text-white font-display font-black text-base shadow">U</span>
-        <div class="leading-tight">
-          <span class="font-display font-extrabold text-sm sm:text-base tracking-tight block">Utile La Norma</span>
-          <span class="text-[11px] text-amber-400 font-semibold hidden sm:inline">Traiteur Montagnard • Savoie</span>
-        </div>
-      </div>
-
-      <div class="flex items-center gap-2">
-        <button type="button" onclick="openQrModal()" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-700 transition cursor-pointer">
-          <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm10 4h2v2h-2v-2zm4-4h2v6h-2v-6zm-4 0h2v2h-2v-2z"/></svg>
-          <span>QR Code</span>
-        </button>
-        <button type="button" onclick="openStoreModal()" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-extrabold bg-amber-500 hover:bg-amber-400 text-slate-950 shadow transition cursor-pointer">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
-          <span>Espace Magasin</span>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- En-tête Alpin Enneigé avec Logo Utile La Norma -->
-  <header class="relative overflow-hidden snow-header pt-7 pb-10 sm:pt-10 sm:pb-14 px-4 text-center no-print">
-    <!-- Décor montagnes enneigées en arrière-plan -->
-    <svg class="absolute inset-x-0 bottom-0 w-full h-36 sm:h-48 pointer-events-none opacity-80" viewBox="0 0 1440 320" preserveAspectRatio="none">
-      <path fill="#cbd5e1" d="M0,225 L190,95 L360,210 L570,65 L800,220 L1020,85 L1250,205 L1440,100 L1440,320 L0,320 Z"></path>
-      <path fill="#ffffff" d="M190,95 L140,136 L172,132 L190,152 L212,130 L238,137 Z"></path>
-      <path fill="#ffffff" d="M570,65 L510,116 L548,112 L570,136 L598,111 L628,118 Z"></path>
-      <path fill="#ffffff" d="M1020,85 L962,134 L998,129 L1020,150 L1048,128 L1076,135 Z"></path>
-      <path fill="#f1f5f9" d="M0,260 C340,220 620,290 960,235 C1180,200 1330,245 1440,230 L1440,320 L0,320 Z"></path>
-    </svg>
-
-    <div class="relative max-w-3xl mx-auto">
-      <!-- Logo SVG Utile La Norma (fond transparent directement sur le décor enneigé, U arrondi bicolore, "tile" net sans carré dans le t) -->
-      <div class="mx-auto w-60 sm:w-72 mb-2 drop-shadow-sm">
-        <svg viewBox="0 0 420 235" class="w-full h-auto overflow-visible" role="img" aria-label="Logo Utile La Norma">
-          <defs>
-            <clipPath id="utileUClip">
-              <path d="M 86 58 L 114 58 L 114 112 C 114 127 140 127 140 112 L 140 58 L 168 58 L 168 113 C 168 150 86 150 86 113 Z"/>
-            </clipPath>
-          </defs>
-
-          <!-- Arc alpin vert sapin / turquoise léger -->
-          <path d="M 62 152 A 148 115 0 0 1 358 152" fill="none" stroke="#16a34a" stroke-width="6" stroke-linecap="round" opacity="0.28"/>
-
-          <!-- Sommet enneigé stylisé derrière le logo -->
-          <polygon points="108,142 182,42 262,142" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/>
-          <polygon points="182,42 152,82 170,78 182,93 196,77 212,83" fill="#ffffff"/>
-
-          <!-- Grand U arrondi : moitié supérieure blanche, moitié inférieure rouge Utile -->
-          <g clip-path="url(#utileUClip)">
-            <rect x="80" y="54" width="95" height="46" fill="#ffffff"/>
-            <rect x="80" y="100" width="95" height="56" fill="#dc2626"/>
-          </g>
-          <path d="M 86 58 L 114 58 L 114 112 C 114 127 140 127 140 112 L 140 58 L 168 58 L 168 113 C 168 150 86 150 86 113 Z" fill="none" stroke="#0f172a" stroke-width="3" stroke-linejoin="round"/>
-
-          <!-- Lettre t propre et nette (sans carré parasite) -->
-          <path d="M 192 52 L 192 123 C 192 135 200 141 213 141 L 220 141 L 220 124 L 215 124 C 211 124 209 122 209 118 L 209 89 L 221 89 L 221 74 L 209 74 L 209 52 Z" fill="#16a34a" stroke="#0f172a" stroke-width="2.5" stroke-linejoin="round"/>
-
-          <!-- Lettre i -->
-          <circle cx="240" cy="56" r="9.5" fill="#16a34a" stroke="#0f172a" stroke-width="2.5"/>
-          <rect x="231" y="74" width="18" height="67" rx="5" fill="#16a34a" stroke="#0f172a" stroke-width="2.5"/>
-
-          <!-- Lettre l -->
-          <rect x="263" y="46" width="18" height="95" rx="5" fill="#16a34a" stroke="#0f172a" stroke-width="2.5"/>
-
-          <!-- Lettre e -->
-          <text x="291" y="140" font-family="Montserrat, sans-serif" font-weight="900" font-size="86" fill="#16a34a" stroke="#0f172a" stroke-width="2.5">e</text>
-
-          <!-- Badge LA NORMA avec croix de Savoie -->
-          <g transform="translate(116, 162)">
-            <rect x="0" y="0" width="188" height="36" rx="18" fill="#0f172a"/>
-            <!-- Petit écusson Savoie -->
-            <g transform="translate(14, 8)">
-              <rect x="0" y="0" width="20" height="20" rx="4" fill="#dc2626"/>
-              <rect x="8.5" y="3" width="3" height="14" fill="#ffffff"/>
-              <rect x="3" y="8.5" width="14" height="3" fill="#ffffff"/>
-            </g>
-            <text x="108" y="24" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="900" font-size="16" letter-spacing="1.5" fill="#ffffff">LA NORMA</text>
-          </g>
-        </svg>
-      </div>
-
-      <!-- Sous-titre directement sous le logo (aucune banderole promotionnelle en dessous) -->
-      <h1 class="text-3xl sm:text-5xl font-display font-black text-slate-900 tracking-tight">
-        Fondue <span class="text-red-600">ou</span> Raclette
-      </h1>
-
-      <div class="mt-6">
-        <a href="#reservation" class="inline-flex items-center gap-2.5 bg-red-600 hover:bg-red-700 text-white font-display font-extrabold text-base sm:text-lg px-7 py-4 rounded-2xl shadow-xl shadow-red-600/25 transition transform active:scale-95">
-          <span>Réserver ma fondue ou raclette</span>
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <main class="flex-1 max-w-5xl w-full mx-auto px-4 pb-16 space-y-12 no-print">
-
-    <!-- Section 1 : Nos 4 Formules (ingrédients listés ligne par ligne, les uns sous les autres) -->
-    <section aria-labelledby="heading-menu">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 mb-5">
-        <div>
-          <span class="text-xs font-extrabold uppercase tracking-wider text-red-600">Préparations Traiteur</span>
-          <h2 id="heading-menu" class="text-2xl sm:text-3xl font-extrabold text-slate-900">Nos 4 Formules Savoyardes</h2>
-        </div>
-        <div class="inline-flex items-center gap-2 bg-amber-50 border border-amber-300 text-amber-950 px-3.5 py-2 rounded-xl text-xs font-bold">
-          <span>🔌</span>
-          <span>Prêt d'appareil gratuit • <strong>Caution de 50 € en espèces au retrait</strong></span>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-
-        <!-- 1. Fondue Savoyarde -->
-        <article class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200/90 border-t-4 border-t-amber-500 flex flex-col justify-between">
-          <div>
-            <div class="flex items-start justify-between gap-3">
-              <div>
-                <span class="inline-block text-[11px] font-extrabold uppercase tracking-wider bg-amber-100 text-amber-900 px-3 py-1 rounded-full mb-1.5">Min. 2 personnes</span>
-                <h3 class="text-xl font-extrabold text-slate-900">Fondue Savoyarde</h3>
-              </div>
-              <div class="text-right shrink-0">
-                <span class="text-2xl sm:text-3xl font-display font-black text-red-600">12,50 €</span>
-                <span class="block text-xs font-bold text-slate-500">/ personne</span>
-              </div>
-            </div>
-
-            <ul class="mt-4 space-y-2 text-sm sm:text-base text-slate-700 font-medium border-t border-slate-100 pt-4">
-              <li class="flex items-start gap-2.5">
-                <span class="text-amber-500 font-black">•</span>
-                <span>Comté AOP affiné</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="text-amber-500 font-black">•</span>
-                <span>Beaufort AOP d'alpage</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="text-amber-500 font-black">•</span>
-                <span>Emmental de Savoie</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="text-green-600 font-black">✓</span>
-                <span class="font-bold text-slate-900">Baguette coupée en cubes offerte</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
-            <span class="text-xs font-semibold text-slate-500">Caquelon & réchaud disponibles</span>
-            <button type="button" onclick="quickAddFormula('fondue_savoyarde')" class="bg-slate-900 hover:bg-red-600 text-white text-xs sm:text-sm font-extrabold px-4 py-2.5 rounded-xl transition cursor-pointer">
-              + Choisir (2 pers.)
-            </button>
-          </div>
-        </article>
-
-        <!-- 2. Fondue Gourmande -->
-        <article class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200/90 border-t-4 border-t-red-600 flex flex-col justify-between">
-          <div>
-            <div class="flex items-start justify-between gap-3">
-              <div>
-                <span class="inline-block text-[11px] font-extrabold uppercase tracking-wider bg-red-100 text-red-800 px-3 py-1 rounded-full mb-1.5">Min. 2 personnes</span>
-                <h3 class="text-xl font-extrabold text-slate-900">Fondue Gourmande</h3>
-              </div>
-              <div class="text-right shrink-0">
-                <span class="text-2xl sm:text-3xl font-display font-black text-red-600">16,50 €</span>
-                <span class="block text-xs font-bold text-slate-500">/ personne</span>
-              </div>
-            </div>
-
-            <ul class="mt-4 space-y-2 text-sm sm:text-base text-slate-700 font-medium border-t border-slate-100 pt-4">
-              <li class="flex items-start gap-2.5">
-                <span class="text-amber-500 font-black">•</span>
-                <span>Comté AOP, Beaufort AOP & Emmental de Savoie</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="text-red-600 font-black">•</span>
-                <span>Assortiment de charcuterie savoyarde (jambon cru, rosette, coppa)</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="text-green-600 font-black">✓</span>
-                <span class="font-bold text-slate-900">Baguette coupée en cubes offerte</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
-            <span class="text-xs font-semibold text-slate-500">Caquelon & réchaud disponibles</span>
-            <button type="button" onclick="quickAddFormula('fondue_gourmande')" class="bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-extrabold px-4 py-2.5 rounded-xl transition cursor-pointer">
-              + Choisir (2 pers.)
-            </button>
-          </div>
-        </article>
-
-        <!-- 3. Raclette Tradition -->
-        <article class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200/90 border-t-4 border-t-slate-800 flex flex-col justify-between">
-          <div>
-            <div class="flex items-start justify-between gap-3">
-              <div>
-                <span class="inline-block text-[11px] font-extrabold uppercase tracking-wider bg-slate-100 text-slate-800 px-3 py-1 rounded-full mb-1.5">Min. 2 personnes</span>
-                <h3 class="text-xl font-extrabold text-slate-900">Raclette Tradition</h3>
-              </div>
-              <div class="text-right shrink-0">
-                <span class="text-2xl sm:text-3xl font-display font-black text-red-600">13,50 €</span>
-                <span class="block text-xs font-bold text-slate-500">/ personne</span>
-              </div>
-            </div>
-
-            <ul class="mt-4 space-y-2 text-sm sm:text-base text-slate-700 font-medium border-t border-slate-100 pt-4">
-              <li class="flex items-start gap-2.5">
-                <span class="text-amber-500 font-black">•</span>
-                <span>Fromage à raclette au lait cru (nature & fumé)</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="text-amber-500 font-black">•</span>
-                <span>Pommes de terre grenailles prêtes à cuire</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="text-green-600 font-black">•</span>
-                <span>Cornichons & oignons grelots</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
-            <span class="text-xs font-semibold text-slate-500">Appareil à raclette disponible</span>
-            <button type="button" onclick="quickAddFormula('raclette_tradition')" class="bg-slate-900 hover:bg-red-600 text-white text-xs sm:text-sm font-extrabold px-4 py-2.5 rounded-xl transition cursor-pointer">
-              + Choisir (2 pers.)
-            </button>
-          </div>
-        </article>
-
-        <!-- 4. Raclette Mixte & Charcuterie -->
-        <article class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200/90 border-t-4 border-t-green-600 flex flex-col justify-between">
-          <div>
-            <div class="flex items-start justify-between gap-3">
-              <div>
-                <span class="inline-block text-[11px] font-extrabold uppercase tracking-wider bg-green-100 text-green-900 px-3 py-1 rounded-full mb-1.5">Min. 2 personnes</span>
-                <h3 class="text-xl font-extrabold text-slate-900">Raclette Mixte & Charcuterie</h3>
-              </div>
-              <div class="text-right shrink-0">
-                <span class="text-2xl sm:text-3xl font-display font-black text-red-600">17,50 €</span>
-                <span class="block text-xs font-bold text-slate-500">/ personne</span>
-              </div>
-            </div>
-
-            <ul class="mt-4 space-y-2 text-sm sm:text-base text-slate-700 font-medium border-t border-slate-100 pt-4">
-              <li class="flex items-start gap-2.5">
-                <span class="text-amber-500 font-black">•</span>
-                <span>Fromage à raclette au lait cru (nature & fumé)</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="text-red-600 font-black">•</span>
-                <span>Assortiment généreux de charcuterie de montagne</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="text-green-600 font-black">•</span>
-                <span>Pommes de terre grenailles, cornichons & oignons grelots</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
-            <span class="text-xs font-semibold text-slate-500">Appareil à raclette disponible</span>
-            <button type="button" onclick="quickAddFormula('raclette_mixte')" class="bg-green-600 hover:bg-green-700 text-white text-xs sm:text-sm font-extrabold px-4 py-2.5 rounded-xl transition cursor-pointer">
-              + Choisir (2 pers.)
-            </button>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- Section 2 : Formulaire de Réservation Directe sur le Site (Sans WhatsApp) -->
-    <section id="reservation" class="bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200">
-      <div class="border-b border-slate-100 pb-5 mb-6">
-        <span class="text-xs font-extrabold uppercase tracking-wider text-green-600">Réservation directe en ligne</span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-0.5">Réserver votre commande</h2>
-        <p class="text-sm text-slate-600 mt-1">
-          Commande <strong>la veille au plus tard</strong> (7 prochains jours disponibles). Règlement sur place en magasin lors du retrait.
-        </p>
-      </div>
-
-      <form id="reservationForm" onsubmit="handleDirectReservation(event)" class="space-y-7">
-
-        <!-- Étape 1 : Nombre de personnes par formule (min. 2 pers. par formule choisie) -->
-        <div>
-          <div class="flex items-center justify-between mb-3">
-            <label class="text-base font-extrabold text-slate-900">1. Nombre de personnes par formule</label>
-            <span class="text-xs font-bold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-lg">Minimum 2 pers. / formule</span>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            <!-- Fondue Savoyarde -->
-            <div class="flex items-center justify-between bg-slate-50 border border-slate-200 rounded-2xl p-4">
-              <div>
-                <div class="font-extrabold text-slate-900 text-sm sm:text-base">Fondue Savoyarde</div>
-                <div class="text-xs font-bold text-red-600">12,50 € / pers.</div>
-              </div>
-              <div class="flex items-center gap-2.5">
-                <button type="button" onclick="stepFormula('fondue_savoyarde', -1)" class="w-10 h-10 rounded-xl bg-white border border-slate-300 font-black text-lg text-slate-800 hover:bg-slate-100 cursor-pointer">−</button>
-                <span id="count-fondue_savoyarde" class="w-8 text-center font-display font-black text-lg text-slate-900">0</span>
-                <button type="button" onclick="stepFormula('fondue_savoyarde', 1)" class="w-10 h-10 rounded-xl bg-slate-900 text-white font-black text-lg hover:bg-red-600 cursor-pointer">+</button>
-              </div>
-            </div>
-
-            <!-- Fondue Gourmande -->
-            <div class="flex items-center justify-between bg-slate-50 border border-slate-200 rounded-2xl p-4">
-              <div>
-                <div class="font-extrabold text-slate-900 text-sm sm:text-base">Fondue Gourmande</div>
-                <div class="text-xs font-bold text-red-600">16,50 € / pers.</div>
-              </div>
-              <div class="flex items-center gap-2.5">
-                <button type="button" onclick="stepFormula('fondue_gourmande', -1)" class="w-10 h-10 rounded-xl bg-white border border-slate-300 font-black text-lg text-slate-800 hover:bg-slate-100 cursor-pointer">−</button>
-                <span id="count-fondue_gourmande" class="w-8 text-center font-display font-black text-lg text-slate-900">0</span>
-                <button type="button" onclick="stepFormula('fondue_gourmande', 1)" class="w-10 h-10 rounded-xl bg-slate-900 text-white font-black text-lg hover:bg-red-600 cursor-pointer">+</button>
-              </div>
-            </div>
-
-            <!-- Raclette Tradition -->
-            <div class="flex items-center justify-between bg-slate-50 border border-slate-200 rounded-2xl p-4">
-              <div>
-                <div class="font-extrabold text-slate-900 text-sm sm:text-base">Raclette Tradition</div>
-                <div class="text-xs font-bold text-red-600">13,50 € / pers.</div>
-              </div>
-              <div class="flex items-center gap-2.5">
-                <button type="button" onclick="stepFormula('raclette_tradition', -1)" class="w-10 h-10 rounded-xl bg-white border border-slate-300 font-black text-lg text-slate-800 hover:bg-slate-100 cursor-pointer">−</button>
-                <span id="count-raclette_tradition" class="w-8 text-center font-display font-black text-lg text-slate-900">0</span>
-                <button type="button" onclick="stepFormula('raclette_tradition', 1)" class="w-10 h-10 rounded-xl bg-slate-900 text-white font-black text-lg hover:bg-red-600 cursor-pointer">+</button>
-              </div>
-            </div>
-
-            <!-- Raclette Mixte & Charcuterie -->
-            <div class="flex items-center justify-between bg-slate-50 border border-slate-200 rounded-2xl p-4">
-              <div>
-                <div class="font-extrabold text-slate-900 text-sm sm:text-base">Raclette Mixte & Charcuterie</div>
-                <div class="text-xs font-bold text-red-600">17,50 € / pers.</div>
-              </div>
-              <div class="flex items-center gap-2.5">
-                <button type="button" onclick="stepFormula('raclette_mixte', -1)" class="w-10 h-10 rounded-xl bg-white border border-slate-300 font-black text-lg text-slate-800 hover:bg-slate-100 cursor-pointer">−</button>
-                <span id="count-raclette_mixte" class="w-8 text-center font-display font-black text-lg text-slate-900">0</span>
-                <button type="button" onclick="stepFormula('raclette_mixte', 1)" class="w-10 h-10 rounded-xl bg-slate-900 text-white font-black text-lg hover:bg-red-600 cursor-pointer">+</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Étape 2 & 3 : Jour de retrait + Créneau horaire -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div>
-            <label for="pickupDaySelect" class="block text-base font-extrabold text-slate-900 mb-2">
-              2. Jour de retrait <span class="text-xs font-semibold text-slate-500">(Commande la veille au plus tard)</span>
-            </label>
-            <select id="pickupDaySelect" required class="w-full rounded-2xl border-2 border-slate-200 bg-white px-4 py-3.5 text-sm sm:text-base font-bold text-slate-900 focus:border-slate-900 focus:outline-none"></select>
-          </div>
-
-          <div>
-            <span class="block text-base font-extrabold text-slate-900 mb-2">3. Créneau de retrait en magasin</span>
-            <div class="grid grid-cols-2 gap-3">
-              <label class="cursor-pointer">
-                <input type="radio" name="pickupSlot" value="Midi — dès 11h00" class="peer sr-only" checked>
-                <div class="rounded-2xl border-2 border-slate-200 bg-white p-3 text-center peer-checked:border-red-600 peer-checked:bg-red-50 transition">
-                  <span class="block text-sm font-extrabold text-slate-900">☀️ Midi</span>
-                  <span class="block text-xs font-bold text-red-700 mt-0.5">dès 11h00</span>
+    <!-- En-tête -->
+    <header class="bg-amber-900 text-amber-50 shadow-md sticky top-0 z-40">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-fire-burner text-2xl text-amber-400"></i>
+                <div>
+                    <h1 class="font-bold text-lg tracking-wide">Comptoir Savoyard</h1>
+                    <p class="text-xs text-amber-200">Retrait en magasin - Fondues & Raclettes</p>
                 </div>
-              </label>
+            </div>
+            <div class="flex items-center space-x-2">
+                <button onclick="openAdminLogin()" class="bg-amber-800/80 hover:bg-amber-700 text-amber-100 px-3 py-1.5 rounded-lg text-xs font-medium border border-amber-700 transition flex items-center gap-1">
+                    <i class="fa-solid fa-lock text-xs"></i><span>Admin</span>
+                </button>
+            </div>
+        </div>
+    </header>
 
-              <label class="cursor-pointer">
-                <input type="radio" name="pickupSlot" value="Soir — 16h00 à 19h00" class="peer sr-only">
-                <div class="rounded-2xl border-2 border-slate-200 bg-white p-3 text-center peer-checked:border-red-600 peer-checked:bg-red-50 transition">
-                  <span class="block text-sm font-extrabold text-slate-900">🌙 Soir</span>
-                  <span class="block text-xs font-bold text-red-700 mt-0.5">16h00 à 19h00</span>
+    <!-- Bannière Caution Appareil -->
+    <div class="bg-amber-100 border-b border-amber-200 text-amber-900 px-4 py-2 text-xs text-center font-medium">
+        <i class="fa-solid fa-circle-info mr-1 text-amber-700"></i> Prêt d'appareil gratuit (Caution de 50€ en espèces demandée en magasin).
+    </div>
+
+    <!-- Contenu Principal -->
+    <main class="max-w-4xl mx-auto px-4 py-6 w-full flex-grow mb-20 md:mb-6">
+        
+        <!-- Alerte de confirmation de commande -->
+        <div id="order-success-banner" class="hidden mb-6 bg-emerald-50 border border-emerald-200 p-4 rounded-xl shadow-sm text-emerald-900">
+            <div class="flex items-start gap-3">
+                <i class="fa-solid fa-circle-check text-emerald-600 text-xl mt-0.5"></i>
+                <div>
+                    <h3 class="font-bold text-sm">Commande enregistrée avec succès !</h3>
+                    <p class="text-xs text-emerald-700 mt-0.5">Votre commande a été transmise en temps réel au magasin. Vous pourrez venir la récupérer à l'heure choisie.</p>
                 </div>
-              </label>
             </div>
-          </div>
         </div>
 
-        <!-- Étape 4 : Prêt d'appareil gratuit + Badge Caution 50 € en espèces -->
-        <div class="bg-amber-50/80 border-2 border-amber-200 rounded-2xl p-4 sm:p-5 space-y-3">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <span class="text-base font-extrabold text-slate-900">4. Prêt d'appareil gratuit (optionnel)</span>
-            <span class="inline-flex items-center gap-1.5 bg-amber-500 text-slate-950 text-xs font-extrabold px-3 py-1 rounded-full">
-              💶 Caution de 50 € en espèces demandée au retrait
-            </span>
-          </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- Catalogue Formules -->
+            <div class="md:col-span-2 space-y-4">
+                <h2 class="text-lg font-bold text-stone-900 flex items-center gap-2 border-b pb-2">
+                    <i class="fa-solid fa-utensils text-amber-800"></i> Nos Formules & Préparations
+                </h2>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-            <label class="flex items-center gap-3 bg-white border border-amber-200 rounded-xl p-3.5 cursor-pointer hover:border-amber-400 transition">
-              <input type="checkbox" id="applianceFondue" class="w-5 h-5 rounded text-red-600 focus:ring-red-500">
-              <div>
-                <span class="block text-sm font-extrabold text-slate-900">Caquelon & Réchaud Fondue</span>
-                <span class="block text-xs text-slate-500 font-semibold">Prêt gratuit • Caution 50 € espèces</span>
-              </div>
-            </label>
+                <div id="products-list" class="space-y-4">
+                    <!-- Généré par JS -->
+                </div>
 
-            <label class="flex items-center gap-3 bg-white border border-amber-200 rounded-xl p-3.5 cursor-pointer hover:border-amber-400 transition">
-              <input type="checkbox" id="applianceRaclette" class="w-5 h-5 rounded text-red-600 focus:ring-red-500">
-              <div>
-                <span class="block text-sm font-extrabold text-slate-900">Appareil à Raclette</span>
-                <span class="block text-xs text-slate-500 font-semibold">Prêt gratuit • Caution 50 € espèces</span>
-              </div>
-            </label>
-          </div>
-        </div>
+                <h2 class="text-lg font-bold text-stone-900 flex items-center gap-2 border-b pb-2 pt-4">
+                    <i class="fa-solid fa-wine-bottle text-amber-800"></i> Boissons & Offre Spéciale
+                </h2>
 
-        <!-- Étape 5 : Nom & Prénom + Téléphone (sans encart précision éventuelle) -->
-        <div>
-          <span class="block text-base font-extrabold text-slate-900 mb-3">5. Vos coordonnées</span>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label for="customerName" class="block text-xs font-extrabold uppercase tracking-wider text-slate-600 mb-1.5">Nom & Prénom *</label>
-              <input type="text" id="customerName" required placeholder="Ex : Camille Bernard" class="w-full rounded-2xl border-2 border-slate-200 bg-white px-4 py-3.5 text-sm sm:text-base font-bold text-slate-900 focus:border-slate-900 focus:outline-none">
+                <div id="drinks-list" class="space-y-4">
+                    <!-- Généré par JS -->
+                </div>
             </div>
-            <div>
-              <label for="customerPhone" class="block text-xs font-extrabold uppercase tracking-wider text-slate-600 mb-1.5">Téléphone *</label>
-              <input type="tel" id="customerPhone" required placeholder="Ex : 06 12 34 56 78" class="w-full rounded-2xl border-2 border-slate-200 bg-white px-4 py-3.5 text-sm sm:text-base font-bold text-slate-900 focus:border-slate-900 focus:outline-none">
+
+            <!-- Panier & Validation -->
+            <div class="md:col-span-1">
+                <div class="bg-white rounded-2xl shadow-sm border border-stone-200 p-4 sticky top-20">
+                    <h3 class="font-bold text-stone-900 mb-3 flex items-center justify-between border-b pb-2">
+                        <span><i class="fa-solid fa-basket-shopping text-amber-800 mr-1.5"></i> Votre Panier</span>
+                        <span id="cart-count" class="bg-amber-100 text-amber-900 text-xs px-2 py-0.5 rounded-full font-bold">0</span>
+                    </h3>
+
+                    <div id="cart-items" class="divide-y divide-stone-100 max-h-60 overflow-y-auto mb-4 text-sm">
+                        <p class="text-stone-400 text-xs py-4 text-center">Votre panier est vide</p>
+                    </div>
+
+                    <div class="border-t pt-3 space-y-2 text-xs">
+                        <div class="flex justify-between font-bold text-sm text-stone-900 pt-1">
+                            <span>Total estimé :</span>
+                            <span id="cart-total" class="text-amber-900">0,00 €</span>
+                        </div>
+                    </div>
+
+                    <!-- Formulaire de retrait -->
+                    <div class="mt-4 pt-3 border-t space-y-3">
+                        <h4 class="font-bold text-xs uppercase tracking-wider text-stone-600">Informations de retrait</h4>
+                        <div>
+                            <label class="block text-[11px] font-medium text-stone-600 mb-1">Votre Nom / Prénom</label>
+                            <input type="text" id="client-name" placeholder="Ex: Jean Dupont" class="w-full text-xs p-2 border border-stone-300 rounded-lg focus:ring-1 focus:ring-amber-800 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-medium text-stone-600 mb-1">Numéro de téléphone</label>
+                            <input type="tel" id="client-phone" placeholder="Ex: 06 12 34 56 78" class="w-full text-xs p-2 border border-stone-300 rounded-lg focus:ring-1 focus:ring-amber-800 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-medium text-stone-600 mb-1">Heure de retrait souhaitée</label>
+                            <input type="time" id="client-time" class="w-full text-xs p-2 border border-stone-300 rounded-lg focus:ring-1 focus:ring-amber-800 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-medium text-stone-600 mb-1">Notes pour la préparation (facultatif)</label>
+                            <textarea id="client-notes" placeholder="Ex: Tranches un peu plus fines..." class="w-full text-xs p-2 border border-stone-300 rounded-lg focus:ring-1 focus:ring-amber-800 focus:outline-none" rows="2"></textarea>
+                        </div>
+
+                        <button onclick="validateOrder()" class="w-full bg-amber-900 hover:bg-amber-800 text-white font-bold py-2.5 px-4 rounded-xl shadow transition text-xs flex items-center justify-center gap-2 mt-2">
+                            <i class="fa-solid fa-check"></i> Valider ma commande
+                        </button>
+                    </div>
+                </div>
             </div>
-          </div>
+
         </div>
+    </main>
 
-        <!-- Message d'erreur éventuel -->
-        <div id="formErrorBox" class="hidden rounded-2xl p-4 text-sm font-bold bg-red-50 text-red-700 border border-red-200"></div>
-
-        <!-- Barre de total & validation directe -->
-        <div class="bg-slate-900 text-white rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <span class="text-xs font-extrabold uppercase tracking-wider text-amber-400 block">Total estimé (paiement au retrait)</span>
-            <div class="flex items-baseline gap-3 mt-1">
-              <span id="liveTotalPrice" class="text-3xl sm:text-4xl font-display font-black text-white">0,00 €</span>
-              <span id="liveTotalPersons" class="text-sm font-semibold text-slate-300">0 personne</span>
-            </div>
-          </div>
-
-          <button type="submit" id="submitBtn" class="w-full sm:w-auto bg-green-600 hover:bg-green-500 text-white font-display font-extrabold text-sm sm:text-base px-7 py-4 rounded-2xl shadow-lg shadow-green-600/25 transition transform active:scale-95 cursor-pointer">
-            Confirmer ma réservation sur le site
-          </button>
-        </div>
-
-      </form>
-    </section>
-
-  </main>
-
-  <!-- Pied de page -->
-  <footer class="bg-slate-900 text-slate-300 py-8 px-4 text-center text-xs no-print">
-    <div class="max-w-4xl mx-auto space-y-2">
-      <p class="font-display font-extrabold text-white text-sm">Utile La Norma — Station de La Norma (Savoie)</p>
-      <p>Retrait des commandes en magasin : <strong>Midi dès 11h00</strong> • <strong>Soir 16h00 à 19h00</strong></p>
-      <div class="pt-3 flex items-center justify-center gap-3">
-        <button type="button" onclick="openStoreModal()" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-400 font-extrabold border border-slate-700 transition cursor-pointer">
-          <span>🔒 Accès Espace Magasin (PIN 1234)</span>
-        </button>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Modale Ticket de Confirmation Client -->
-  <div id="ticketModal" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto no-print">
-    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl space-y-5 my-auto">
-      <div class="text-center space-y-2">
-        <div class="w-14 h-14 rounded-2xl bg-green-100 text-green-600 flex items-center justify-center text-3xl mx-auto font-black">✓</div>
-        <span id="ticketOrderNumber" class="inline-block text-xs font-display font-black uppercase tracking-widest bg-slate-900 text-amber-400 px-3 py-1 rounded-full">COMMANDE #000</span>
-        <h3 class="text-2xl font-extrabold text-slate-900">Réservation enregistrée !</h3>
-        <p class="text-xs text-slate-500 font-semibold">Conservez ce récapitulatif pour votre retrait chez Utile La Norma.</p>
-      </div>
-
-      <div id="ticketDetailsBox" class="bg-slate-50 border-2 border-dashed border-slate-300 rounded-2xl p-4 space-y-3 text-sm text-slate-800"></div>
-
-      <div id="ticketDepositReminder" class="hidden bg-amber-50 border border-amber-300 text-amber-950 rounded-2xl p-3.5 text-xs font-extrabold text-center">
-        💶 Rappel prêt d'appareil : merci de prévoir une caution de 50 € en espèces lors du retrait.
-      </div>
-
-      <div id="ticketSyncBadge" class="text-center text-[11px] font-bold text-slate-500"></div>
-
-      <div class="flex flex-col sm:flex-row gap-2.5">
-        <button type="button" onclick="copyTicketSummary()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-900 font-extrabold text-xs py-3.5 px-4 rounded-xl transition cursor-pointer">
-          📋 Copier mon ticket
-        </button>
-        <button type="button" onclick="closeModal('ticketModal')" class="flex-1 bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs py-3.5 px-4 rounded-xl transition cursor-pointer">
-          Terminer
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modale QR Code Magasin -->
-  <div id="qrModal" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4 no-print">
-    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl text-center space-y-4">
-      <h3 class="text-lg font-extrabold text-slate-900">QR Code — Utile La Norma</h3>
-      <p class="text-xs text-slate-600 font-medium">Affichez ce QR code en magasin pour que vos clients réservent directement sur le site.</p>
-
-      <div class="text-left">
-        <label for="qrLinkInput" class="block text-[11px] font-extrabold text-slate-600 mb-1">Lien du site :</label>
-        <div class="flex gap-1.5">
-          <input type="url" id="qrLinkInput" class="flex-1 text-xs border border-slate-300 rounded-xl px-3 py-2 font-semibold" value="https://glacialys.github.io/utile-la-norma/">
-          <button type="button" onclick="generateStoreQr()" class="bg-slate-900 text-white text-xs font-extrabold px-3 py-2 rounded-xl cursor-pointer">OK</button>
-        </div>
-      </div>
-
-      <div id="qrCodeBox" class="flex justify-center p-4 bg-white border-2 border-slate-100 rounded-2xl mx-auto w-fit"></div>
-
-      <div class="flex gap-2">
-        <button type="button" onclick="downloadStoreQr()" class="flex-1 bg-red-600 hover:bg-red-700 text-white text-xs font-extrabold py-3 rounded-xl cursor-pointer">Télécharger PNG</button>
-        <button type="button" onclick="closeModal('qrModal')" class="px-4 py-3 bg-slate-100 text-slate-700 text-xs font-extrabold rounded-xl cursor-pointer">Fermer</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modale Espace Magasin Ultra-Lisible (PIN 1234) -->
-  <div id="storeModal" class="fixed inset-0 z-50 hidden bg-slate-950/85 backdrop-blur-sm flex items-start justify-center p-2 sm:p-5 overflow-y-auto">
-    <div id="printableStoreSheet" class="bg-slate-100 rounded-3xl max-w-5xl w-full p-4 sm:p-7 shadow-2xl my-auto">
-
-      <!-- En-tête Espace Magasin -->
-      <div class="flex flex-wrap items-center justify-between gap-3 bg-slate-900 text-white rounded-2xl p-4 sm:p-5 mb-5">
-        <div class="flex items-center gap-3">
-          <span class="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 font-display font-black text-lg flex items-center justify-center">U</span>
-          <div>
-            <h3 class="text-lg sm:text-xl font-extrabold">Espace Magasin — Utile La Norma</h3>
-            <p class="text-xs text-slate-300">Planning des préparations & fiches retraits clients</p>
-          </div>
-        </div>
-        <button type="button" onclick="closeModal('storeModal')" class="bg-slate-800 hover:bg-slate-700 text-white font-extrabold text-sm px-4 py-2 rounded-xl cursor-pointer no-print">
-          Fermer ✕
-        </button>
-      </div>
-
-      <!-- Écran de verrouillage PIN -->
-      <div id="storePinGate" class="bg-white rounded-3xl p-8 max-w-sm mx-auto text-center space-y-4 shadow-sm border border-slate-200">
-        <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl mx-auto">🔒</div>
-        <h4 class="text-lg font-extrabold text-slate-900">Accès réservé équipe magasin</h4>
-        <p class="text-xs text-slate-500 font-semibold">Saisissez le code PIN (1234) pour ouvrir le planning :</p>
-        <input type="password" id="storePinField" maxlength="4" inputmode="numeric" placeholder="••••" onkeydown="if(event.key==='Enter') verifyStorePin()" class="w-full text-center tracking-[0.5em] text-2xl font-display font-black border-2 border-slate-300 rounded-2xl py-3 focus:border-slate-900 focus:outline-none">
-        <p id="storePinError" class="hidden text-xs font-extrabold text-red-600">Code PIN incorrect.</p>
-        <button type="button" onclick="verifyStorePin()" class="w-full bg-slate-900 hover:bg-red-600 text-white font-extrabold text-sm py-3.5 rounded-2xl transition cursor-pointer">
-          Déverrouiller le planning
-        </button>
-      </div>
-
-      <!-- Contenu du Planning Magasin (déverrouillé) -->
-      <div id="storePlanningContent" class="hidden space-y-6">
-
-        <!-- Barre d'outils rapide : Synchronisation cloud, exemples, impression -->
-        <div class="bg-white rounded-2xl p-4 border border-slate-200 flex flex-wrap items-center justify-between gap-3 no-print">
-          <div class="flex flex-wrap items-center gap-2">
-            <button type="button" onclick="toggleCloudConfig()" class="inline-flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-900 text-xs font-extrabold px-3.5 py-2.5 rounded-xl transition cursor-pointer">
-              <span>☁️ Synchronisation téléphones clients</span>
-              <span id="cloudStatusDot" class="w-2 h-2 rounded-full bg-slate-400"></span>
+    <!-- Modal Admin -->
+    <div id="admin-modal" class="hidden fixed inset-0 bg-stone-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-xl p-6 relative">
+            <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-stone-400 hover:text-stone-700 text-lg">
+                <i class="fa-solid fa-xmark"></i>
             </button>
-            <button type="button" id="refreshCloudBtn" onclick="fetchCloudOrders(true)" class="hidden inline-flex items-center gap-1 bg-sky-50 hover:bg-sky-100 text-sky-900 border border-sky-200 text-xs font-extrabold px-3 py-2.5 rounded-xl transition cursor-pointer">
-              🔄 Actualiser
-            </button>
-            <button type="button" id="clearExamplesBtn" onclick="clearSampleOrders()" class="hidden inline-flex items-center gap-1 bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 text-xs font-extrabold px-3 py-2.5 rounded-xl transition cursor-pointer">
-              🧹 Effacer les exemples
-            </button>
-          </div>
 
-          <button type="button" onclick="window.print()" class="inline-flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-extrabold px-4 py-2.5 rounded-xl shadow-sm transition cursor-pointer">
-            🖨️ Imprimer la feuille du jour
-          </button>
-        </div>
-
-        <!-- Panneau optionnel de synchronisation Google Apps Script / Webhook -->
-        <div id="cloudConfigPanel" class="hidden bg-white rounded-2xl p-5 border-2 border-sky-200 space-y-3 no-print">
-          <div class="flex items-start justify-between gap-2">
-            <div>
-              <h4 class="text-sm font-extrabold text-slate-900">Recevoir automatiquement les commandes des téléphones clients</h4>
-              <p class="text-xs text-slate-600 mt-0.5">
-                Par défaut, chaque téléphone enregistre sa commande localement. Pour centraliser toutes les commandes clients sur l'écran du magasin en temps réel, collez ici l'URL de votre script Google Sheets (ou webhook JSON).
-              </p>
+            <!-- Écran de connexion Admin -->
+            <div id="admin-login-screen" class="space-y-4 py-8 text-center max-w-sm mx-auto">
+                <div class="w-12 h-12 bg-amber-100 text-amber-800 rounded-full flex items-center justify-center mx-auto mb-2 text-lg">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h3 class="font-bold text-lg text-stone-900">Accès Administrateur</h3>
+                <p class="text-xs text-stone-500">Entrez votre code PIN pour accéder au suivi des commandes en temps réel.</p>
+                <input type="password" id="admin-pin" placeholder="Code PIN (1234)" class="w-full text-center text-lg p-2.5 border border-stone-300 rounded-xl focus:ring-2 focus:ring-amber-800 focus:outline-none tracking-widest">
+                <button onclick="checkAdminPin()" class="w-full bg-amber-900 text-white py-2.5 rounded-xl font-bold text-xs hover:bg-amber-800 transition">Se connecter</button>
+                <p id="pin-error" class="text-xs text-rose-600 hidden">Code PIN incorrect (essayez 1234)</p>
             </div>
-            <button type="button" onclick="toggleCloudConfig()" class="text-xs font-bold text-slate-400 hover:text-slate-700">Fermer</button>
-          </div>
-          <div class="flex flex-col sm:flex-row gap-2">
-            <input type="url" id="cloudWebhookInput" placeholder="https://script.google.com/macros/s/.../exec" class="flex-1 text-xs border-2 border-slate-200 rounded-xl px-3.5 py-2.5 font-semibold focus:border-sky-600 focus:outline-none">
-            <button type="button" onclick="saveCloudWebhook()" class="bg-sky-600 hover:bg-sky-700 text-white text-xs font-extrabold px-4 py-2.5 rounded-xl cursor-pointer">Enregistrer le lien</button>
-          </div>
-          <p id="cloudConfigFeedback" class="hidden text-xs font-bold text-green-700"></p>
-        </div>
 
-        <!-- Filtres visuels par Jour et Créneau (Onglets larges et tactiles) -->
-        <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 space-y-4 no-print">
-          <div>
-            <span class="text-xs font-extrabold uppercase tracking-wider text-slate-500 block mb-2">Filtrer par jour de retrait</span>
-            <div id="dayFilterTabs" class="flex flex-wrap gap-2"></div>
-          </div>
+            <!-- Tableau de bord Admin -->
+            <div id="admin-dashboard" class="hidden space-y-6">
+                <div class="flex justify-between items-center border-b pb-3">
+                    <div>
+                        <h3 class="font-bold text-base text-stone-900">Espace Gestion - Commandes Magasin</h3>
+                        <p class="text-xs text-stone-500">Synchronisé en direct avec vos clients</p>
+                    </div>
+                    <button onclick="logoutAdmin()" class="text-xs text-rose-700 hover:underline font-medium">Déconnexion</button>
+                </div>
 
-          <div class="pt-3 border-t border-slate-100">
-            <span class="text-xs font-extrabold uppercase tracking-wider text-slate-500 block mb-2">Filtrer par créneau</span>
-            <div id="slotFilterTabs" class="flex flex-wrap gap-2">
-              <button type="button" data-slot="ALL" onclick="setSlotFilter('ALL')" class="slot-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-slate-900 text-white cursor-pointer">Tous les créneaux</button>
-              <button type="button" data-slot="Midi — dès 11h00" onclick="setSlotFilter('Midi — dès 11h00')" class="slot-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200 cursor-pointer">☀️ Midi (dès 11h)</button>
-              <button type="button" data-slot="Soir — 16h00 à 19h00" onclick="setSlotFilter('Soir — 16h00 à 19h00')" class="slot-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200 cursor-pointer">🌙 Soir (16h–19h)</button>
+                <!-- Commandes en direct -->
+                <div>
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-stone-600 mb-3 flex items-center justify-between">
+                        <span>Commandes en direct (<span id="admin-orders-count">0</span>)</span>
+                    </h4>
+                    <div id="admin-orders-list" class="space-y-3">
+                        <!-- Rempli par Firebase en direct -->
+                    </div>
+                </div>
+
+                <!-- Générateur de QR Code -->
+                <div class="border-t pt-4">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-stone-600 mb-2">Générateur QR Code Magasin</h4>
+                    <p class="text-xs text-stone-500 mb-3">Imprimez ce QR code à afficher sur votre comptoir ou vitrine.</p>
+                    <div class="flex gap-2">
+                        <input type="text" id="qr-label" value="Vitrine Magasin" class="text-xs p-2 border border-stone-300 rounded-lg flex-grow">
+                        <button onclick="generateQRCode()" class="bg-stone-900 text-white text-xs px-4 py-2 rounded-lg font-medium">Générer</button>
+                    </div>
+                    <div id="qrcode-container" class="mt-4 flex justify-center bg-stone-50 p-4 rounded-xl border border-stone-200"></div>
+                </div>
             </div>
-          </div>
         </div>
-
-        <!-- BLOC 1 : Totaux à préparer (Gros chiffres ultra-lisibles en cartes contrastées) -->
-        <section aria-label="Totaux à préparer">
-          <div class="flex items-center justify-between mb-3">
-            <h4 class="text-base sm:text-lg font-extrabold text-slate-900">1. Totaux à préparer en cuisine</h4>
-            <span id="filteredOrdersBadge" class="text-xs font-extrabold bg-slate-900 text-white px-3 py-1 rounded-full">0 commande</span>
-          </div>
-
-          <div id="prepBigCardsGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4"></div>
-        </section>
-
-        <!-- BLOC 2 : Fiches Commandes Clients (Cartes aérées, zéro tableau serré) -->
-        <section aria-label="Fiches commandes clients">
-          <h4 class="text-base sm:text-lg font-extrabold text-slate-900 mb-3">2. Fiches Commandes Clients</h4>
-          <div id="storeOrderCardsList" class="space-y-4"></div>
-        </section>
-
-      </div>
     </div>
-  </div>
 
-  <script>
-    // Définition des 4 formules et de leurs grammages de préparation cuisine
-    const FORMULAS = {
-      fondue_savoyarde: {
-        name: 'Fondue Savoyarde',
-        price: 12.50,
-        cheeseFondueKg: 0.22,   // 220 g / pers. (Comté, Beaufort, Emmental)
-        cheeseRacletteKg: 0,
-        charcuterieKg: 0,
-        potatoesKg: 0,
-        baguetteCount: 0.5      // 1/2 baguette en cubes offerte / pers.
-      },
-      fondue_gourmande: {
-        name: 'Fondue Gourmande',
-        price: 16.50,
-        cheeseFondueKg: 0.22,
-        cheeseRacletteKg: 0,
-        charcuterieKg: 0.12,    // 120 g charcuterie savoyarde / pers.
-        potatoesKg: 0,
-        baguetteCount: 0.5
-      },
-      raclette_tradition: {
-        name: 'Raclette Tradition',
-        price: 13.50,
-        cheeseFondueKg: 0,
-        cheeseRacletteKg: 0.25, // 250 g fromage raclette lait cru / pers.
-        charcuterieKg: 0,
-        potatoesKg: 0.30,       // 300 g pommes de terre grenailles / pers.
-        baguetteCount: 0
-      },
-      raclette_mixte: {
-        name: 'Raclette Mixte & Charcuterie',
-        price: 17.50,
-        cheeseFondueKg: 0,
-        cheeseRacletteKg: 0.22, // 220 g fromage raclette lait cru / pers.
-        charcuterieKg: 0.15,    // 150 g assortiment charcuterie / pers.
-        potatoesKg: 0.30,
-        baguetteCount: 0
-      }
-    };
-
-    const STORAGE_KEY_ORDERS = 'utile_lanorma_direct_orders_v1';
-    const STORAGE_KEY_SEEDED = 'utile_lanorma_seeded_v1';
-    const STORAGE_KEY_WEBHOOK = 'utile_lanorma_webhook_url_v1';
-
-    const selectedCounts = {
-      fondue_savoyarde: 0,
-      fondue_gourmande: 0,
-      raclette_tradition: 0,
-      raclette_mixte: 0
-    };
-
-    let upcomingDays = [];
-    let activeDayFilter = 'ALL';
-    let activeSlotFilter = 'ALL';
-    let lastGeneratedTicketText = '';
-
-    // Formate un prix en euros français (ex: 25,00 €)
-    function formatEuro(val) {
-      return val.toFixed(2).replace('.', ',') + ' €';
-    }
-
-    // Génère les 7 prochains jours à partir de demain ("Commande la veille au plus tard")
-    function buildUpcomingDays() {
-      upcomingDays = [];
-      const select = document.getElementById('pickupDaySelect');
-      select.innerHTML = '';
-
-      const weekdayFmt = new Intl.DateTimeFormat('fr-FR', { weekday: 'long' });
-      const shortMonthFmt = new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'short' });
-
-      for (let offset = 1; offset <= 7; offset++) {
-        const d = new Date();
-        d.setDate(d.getDate() + offset);
-        const iso = d.toISOString().split('T')[0];
-        const wRaw = weekdayFmt.format(d);
-        const wCap = wRaw.charAt(0).toUpperCase() + wRaw.slice(1);
-        const dm = shortMonthFmt.format(d);
-        const label = offset === 1 ? `Demain — ${wCap} ${dm}` : `${wCap} ${dm}`;
-        const shortTab = offset === 1 ? `Demain (${dm})` : `${wCap.slice(0, 3)}. ${dm}`;
-
-        upcomingDays.push({ iso, label, shortTab, isTomorrow: offset === 1 });
-
-        const opt = document.createElement('option');
-        opt.value = iso;
-        opt.textContent = label;
-        select.appendChild(opt);
-      }
-    }
-
-    // Injecte 2 commandes d'exemple réalistes lors de la première visite pour démontrer la lisibilité
-    function seedInitialSampleOrders() {
-      if (localStorage.getItem(STORAGE_KEY_SEEDED)) return;
-      const tomorrow = upcomingDays[0];
-      const dayAfter = upcomingDays[1] || upcomingDays[0];
-
-      const samples = [
-        {
-          id: 101,
-          orderNumber: 'LN-101',
-          isSample: true,
-          status: 'À préparer',
-          createdAt: new Date().toISOString(),
-          pickupIso: tomorrow.iso,
-          pickupLabel: tomorrow.label,
-          pickupSlot: 'Soir — 16h00 à 19h00',
-          items: {
-            fondue_savoyarde: 0,
-            fondue_gourmande: 4,
-            raclette_tradition: 0,
-            raclette_mixte: 0
-          },
-          applianceFondue: true,
-          applianceRaclette: false,
-          customerName: 'Famille Moreau (Thomas)',
-          customerPhone: '06 45 78 12 90',
-          totalPrice: 66.00
-        },
-        {
-          id: 102,
-          orderNumber: 'LN-102',
-          isSample: true,
-          status: 'Prêt',
-          createdAt: new Date().toISOString(),
-          pickupIso: tomorrow.iso,
-          pickupLabel: tomorrow.label,
-          pickupSlot: 'Midi — dès 11h00',
-          items: {
-            fondue_savoyarde: 0,
-            fondue_gourmande: 0,
-            raclette_tradition: 2,
-            raclette_mixte: 4
-          },
-          applianceFondue: false,
-          applianceRaclette: true,
-          customerName: 'Claire & Julien Petit',
-          customerPhone: '07 82 19 44 03',
-          totalPrice: 97.00
-        }
-      ];
-
-      localStorage.setItem(STORAGE_KEY_ORDERS, JSON.stringify(samples));
-      localStorage.setItem(STORAGE_KEY_SEEDED, '1');
-    }
-
-    function getStoredOrders() {
-      try {
-        return JSON.parse(localStorage.getItem(STORAGE_KEY_ORDERS) || '[]');
-      } catch (e) {
-        return [];
-      }
-    }
-
-    function setStoredOrders(list) {
-      localStorage.setItem(STORAGE_KEY_ORDERS, JSON.stringify(list));
-    }
-
-    // Gestion du compteur +/- avec règle minimum 2 personnes par formule sélectionnée
-    function stepFormula(key, delta) {
-      const current = selectedCounts[key];
-      let next = current;
-
-      if (delta > 0) {
-        next = current === 0 ? 2 : current + 1;
-      } else if (delta < 0) {
-        next = current <= 2 ? 0 : current - 1;
-      }
-
-      selectedCounts[key] = next;
-      document.getElementById('count-' + key).textContent = next;
-      document.getElementById('formErrorBox').classList.add('hidden');
-      updateLiveTotal();
-    }
-
-    // Bouton "+ Choisir (2 pers.)" depuis les cartes du menu
-    function quickAddFormula(key) {
-      if (selectedCounts[key] === 0) {
-        selectedCounts[key] = 2;
-      } else {
-        selectedCounts[key] += 1;
-      }
-      document.getElementById('count-' + key).textContent = selectedCounts[key];
-      document.getElementById('formErrorBox').classList.add('hidden');
-      updateLiveTotal();
-      document.getElementById('reservation').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function updateLiveTotal() {
-      let sum = 0;
-      let persons = 0;
-      for (const k in selectedCounts) {
-        sum += selectedCounts[k] * FORMULAS[k].price;
-        persons += selectedCounts[k];
-      }
-      document.getElementById('liveTotalPrice').textContent = formatEuro(sum);
-      document.getElementById('liveTotalPersons').textContent = persons + (persons > 1 ? ' personnes' : ' personne');
-    }
-
-    // Validation directe de la commande sur le site (sans WhatsApp)
-    async function handleDirectReservation(e) {
-      e.preventDefault();
-      const errorBox = document.getElementById('formErrorBox');
-
-      let totalPersons = 0;
-      let totalPrice = 0;
-      for (const k in selectedCounts) {
-        if (selectedCounts[k] > 0 && selectedCounts[k] < 2) {
-          errorBox.textContent = `Minimum 2 personnes requis pour la formule "${FORMULAS[k].name}".`;
-          errorBox.classList.remove('hidden');
-          return;
-        }
-        totalPersons += selectedCounts[k];
-        totalPrice += selectedCounts[k] * FORMULAS[k].price;
-      }
-
-      if (totalPersons === 0) {
-        errorBox.textContent = 'Veuillez sélectionner au moins une formule (minimum 2 personnes) avant de confirmer.';
-        errorBox.classList.remove('hidden');
-        return;
-      }
-      errorBox.classList.add('hidden');
-
-      const daySelect = document.getElementById('pickupDaySelect');
-      const pickupIso = daySelect.value;
-      const pickupLabel = daySelect.options[daySelect.selectedIndex].text;
-      const pickupSlot = document.querySelector('input[name="pickupSlot"]:checked').value;
-      const applianceFondue = document.getElementById('applianceFondue').checked;
-      const applianceRaclette = document.getElementById('applianceRaclette').checked;
-      const customerName = document.getElementById('customerName').value.trim();
-      const customerPhone = document.getElementById('customerPhone').value.trim();
-
-      const existing = getStoredOrders();
-      const nextNum = 103 + existing.length;
-      const orderNumber = 'LN-' + nextNum;
-
-      const newOrder = {
-        id: Date.now(),
-        orderNumber,
-        isSample: false,
-        status: 'À préparer',
-        createdAt: new Date().toISOString(),
-        pickupIso,
-        pickupLabel,
-        pickupSlot,
-        items: { ...selectedCounts },
-        applianceFondue,
-        applianceRaclette,
-        customerName,
-        customerPhone,
-        totalPrice
-      };
-
-      existing.unshift(newOrder);
-      setStoredOrders(existing);
-
-      // Envoi optionnel vers le webhook cloud si le magasin en a configuré un
-      const webhookUrl = localStorage.getItem(STORAGE_KEY_WEBHOOK) || '';
-      const syncBadge = document.getElementById('ticketSyncBadge');
-      if (webhookUrl) {
-        syncBadge.textContent = 'Transmission en cours vers le planning magasin...';
-        try {
-          await fetch(webhookUrl, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(newOrder)
-          });
-          syncBadge.textContent = '✓ Commande transmise au planning du magasin Utile La Norma';
-        } catch (err) {
-          syncBadge.textContent = '✓ Commande enregistrée sur cet appareil';
-        }
-      } else {
-        syncBadge.textContent = '✓ Enregistrée dans le planning du site';
-      }
-
-      // Affichage du ticket de confirmation client
-      renderConfirmationTicket(newOrder);
-
-      // Réinitialisation propre du formulaire
-      for (const k in selectedCounts) {
-        selectedCounts[k] = 0;
-        document.getElementById('count-' + k).textContent = '0';
-      }
-      updateLiveTotal();
-      e.target.reset();
-    }
-
-    function renderConfirmationTicket(order) {
-      document.getElementById('ticketOrderNumber').textContent = 'COMMANDE ' + order.orderNumber;
-
-      const itemLinesHtml = [];
-      const itemLinesTxt = [];
-      for (const k in order.items) {
-        const qty = order.items[k];
-        if (qty > 0) {
-          const lineTotal = formatEuro(qty * FORMULAS[k].price);
-          itemLinesHtml.push(`
-            <div class="flex justify-between font-bold text-slate-900">
-              <span>${qty} pers. × ${FORMULAS[k].name}</span>
-              <span>${lineTotal}</span>
-            </div>
-          `);
-          itemLinesTxt.push(`- ${qty} pers. × ${FORMULAS[k].name} (${lineTotal})`);
-        }
-      }
-
-      const appliances = [];
-      if (order.applianceFondue) appliances.push('Caquelon & Réchaud Fondue');
-      if (order.applianceRaclette) appliances.push('Appareil à Raclette');
-
-      document.getElementById('ticketDetailsBox').innerHTML = `
-        <div class="flex justify-between items-center border-b border-slate-200 pb-2">
-          <span class="text-xs font-extrabold uppercase text-slate-500">Client</span>
-          <span class="font-extrabold text-slate-900">${escapeHtml(order.customerName)}</span>
-        </div>
-        <div class="flex justify-between items-center border-b border-slate-200 pb-2">
-          <span class="text-xs font-extrabold uppercase text-slate-500">Téléphone</span>
-          <span class="font-bold text-slate-800">${escapeHtml(order.customerPhone)}</span>
-        </div>
-        <div class="flex justify-between items-center border-b border-slate-200 pb-2">
-          <span class="text-xs font-extrabold uppercase text-slate-500">Retrait</span>
-          <span class="font-extrabold text-red-600 text-right">${escapeHtml(order.pickupLabel)}<br>${escapeHtml(order.pickupSlot)}</span>
-        </div>
-        <div class="space-y-1.5 pt-1">
-          ${itemLinesHtml.join('')}
-        </div>
-        ${appliances.length > 0 ? `
-          <div class="pt-2 border-t border-slate-200 text-xs font-extrabold text-amber-900">
-            🔌 Prêt matériel : ${appliances.join(' + ')}
-          </div>
-        ` : ''}
-        <div class="pt-2 border-t-2 border-slate-300 flex justify-between items-baseline">
-          <span class="text-xs font-extrabold uppercase text-slate-600">Total à régler sur place</span>
-          <span class="text-xl font-display font-black text-slate-900">${formatEuro(order.totalPrice)}</span>
-        </div>
-      `;
-
-      const depositBox = document.getElementById('ticketDepositReminder');
-      if (appliances.length > 0) {
-        depositBox.classList.remove('hidden');
-      } else {
-        depositBox.classList.add('hidden');
-      }
-
-      lastGeneratedTicketText =
-`UTILE LA NORMA — Ticket ${order.orderNumber}
-Client : ${order.customerName} (${order.customerPhone})
-Retrait : ${order.pickupLabel} | ${order.pickupSlot}
-Formules :
-${itemLinesTxt.join('\n')}
-${appliances.length > 0 ? 'Prêt appareil : ' + appliances.join(' + ') + ' (Caution 50 € en espèces)\n' : ''}Total à régler sur place : ${formatEuro(order.totalPrice)}`;
-
-      document.getElementById('ticketModal').classList.remove('hidden');
-    }
-
-    function copyTicketSummary() {
-      const ta = document.createElement('textarea');
-      ta.value = lastGeneratedTicketText;
-      ta.style.position = 'fixed';
-      ta.style.opacity = '0';
-      document.body.appendChild(ta);
-      ta.select();
-      try { document.execCommand('copy'); } catch (e) {}
-      document.body.removeChild(ta);
-      document.getElementById('ticketSyncBadge').textContent = '✓ Ticket copié dans le presse-papiers !';
-    }
-
-    // Modales
-    function closeModal(id) {
-      document.getElementById(id).classList.add('hidden');
-    }
-
-    function openQrModal() {
-      const url = window.location.href.startsWith('http')
-        ? window.location.href
-        : 'https://glacialys.github.io/utile-la-norma/';
-      document.getElementById('qrLinkInput').value = url;
-      generateStoreQr();
-      document.getElementById('qrModal').classList.remove('hidden');
-    }
-
-    function generateStoreQr() {
-      const box = document.getElementById('qrCodeBox');
-      box.innerHTML = '';
-      const url = document.getElementById('qrLinkInput').value.trim() || 'https://glacialys.github.io/utile-la-norma/';
-      new QRCode(box, {
-        text: url,
-        width: 210,
-        height: 210,
-        colorDark: '#0f172a',
-        colorLight: '#ffffff',
-        correctLevel: QRCode.CorrectLevel.H
-      });
-    }
-
-    function downloadStoreQr() {
-      const canvas = document.querySelector('#qrCodeBox canvas');
-      if (!canvas) return;
-      const a = document.createElement('a');
-      a.download = 'QRCode-Utile-La-Norma.png';
-      a.href = canvas.toDataURL('image/png');
-      a.click();
-    }
-
-    // Espace Magasin (PIN 1234)
-    function openStoreModal() {
-      document.getElementById('storeModal').classList.remove('hidden');
-      document.getElementById('storePinField').value = '';
-      document.getElementById('storePinError').classList.add('hidden');
-    }
-
-    function verifyStorePin() {
-      const val = document.getElementById('storePinField').value.trim();
-      if (val === '1234') {
-        document.getElementById('storePinGate').classList.add('hidden');
-        document.getElementById('storePlanningContent').classList.remove('hidden');
-        initStorePlanningUI();
-      } else {
-        document.getElementById('storePinError').classList.remove('hidden');
-      }
-    }
-
-    function initStorePlanningUI() {
-      const savedUrl = localStorage.getItem(STORAGE_KEY_WEBHOOK) || '';
-      document.getElementById('cloudWebhookInput').value = savedUrl;
-      updateCloudStatusUI(savedUrl);
-
-      renderDayFilterTabs();
-      renderStorePlanning();
-
-      if (savedUrl) {
-        fetchCloudOrders(false);
-      }
-    }
-
-    function updateCloudStatusUI(url) {
-      const dot = document.getElementById('cloudStatusDot');
-      const refreshBtn = document.getElementById('refreshCloudBtn');
-      if (url) {
-        dot.classList.remove('bg-slate-400');
-        dot.classList.add('bg-green-500');
-        refreshBtn.classList.remove('hidden');
-      } else {
-        dot.classList.remove('bg-green-500');
-        dot.classList.add('bg-slate-400');
-        refreshBtn.classList.add('hidden');
-      }
-    }
-
-    function toggleCloudConfig() {
-      document.getElementById('cloudConfigPanel').classList.toggle('hidden');
-    }
-
-    function saveCloudWebhook() {
-      const url = document.getElementById('cloudWebhookInput').value.trim();
-      localStorage.setItem(STORAGE_KEY_WEBHOOK, url);
-      updateCloudStatusUI(url);
-      const fb = document.getElementById('cloudConfigFeedback');
-      fb.textContent = url
-        ? '✓ Lien de synchronisation enregistré ! Les commandes clients seront chargées automatiquement.'
-        : 'Lien de synchronisation retiré (mode stockage local uniquement).';
-      fb.classList.remove('hidden');
-      if (url) fetchCloudOrders(true);
-    }
-
-    async function fetchCloudOrders(showFeedback) {
-      const url = localStorage.getItem(STORAGE_KEY_WEBHOOK) || '';
-      if (!url) return;
-      try {
-        const res = await fetch(url);
-        const data = await res.json();
-        if (Array.isArray(data)) {
-          const local = getStoredOrders();
-          const map = new Map();
-          local.forEach(o => map.set(o.orderNumber || o.id, o));
-          data.forEach(o => {
-            if (o && (o.orderNumber || o.id)) {
-              map.set(o.orderNumber || o.id, o);
-            }
-          });
-          setStoredOrders(Array.from(map.values()));
-          renderStorePlanning();
-          if (showFeedback) {
-            const fb = document.getElementById('cloudConfigFeedback');
-            fb.textContent = '✓ Liste actualisée depuis le serveur.';
-            fb.classList.remove('hidden');
-          }
-        }
-      } catch (e) {}
-    }
-
-    function renderDayFilterTabs() {
-      const container = document.getElementById('dayFilterTabs');
-      const tabs = [{ iso: 'ALL', label: 'Toutes les dates' }, ...upcomingDays.map(d => ({ iso: d.iso, label: d.shortTab }))];
-
-      container.innerHTML = tabs.map(t => {
-        const isActive = activeDayFilter === t.iso;
-        const cls = isActive
-          ? 'bg-slate-900 text-white'
-          : 'bg-slate-100 text-slate-700 hover:bg-slate-200';
-        return `<button type="button" onclick="setDayFilter('${t.iso}')" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-extrabold transition cursor-pointer ${cls}">${t.label}</button>`;
-      }).join('');
-    }
-
-    function setDayFilter(iso) {
-      activeDayFilter = iso;
-      renderDayFilterTabs();
-      renderStorePlanning();
-    }
-
-    function setSlotFilter(slot) {
-      activeSlotFilter = slot;
-      document.querySelectorAll('.slot-tab').forEach(btn => {
-        const active = btn.getAttribute('data-slot') === slot;
-        btn.className = active
-          ? 'slot-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-slate-900 text-white cursor-pointer'
-          : 'slot-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200 cursor-pointer';
-      });
-      renderStorePlanning();
-    }
-
-    function updateOrderStatus(id, newStatus) {
-      const list = getStoredOrders().map(o => o.id === id ? { ...o, status: newStatus } : o);
-      setStoredOrders(list);
-      renderStorePlanning();
-    }
-
-    function deleteStoreOrder(id) {
-      const list = getStoredOrders().filter(o => o.id !== id);
-      setStoredOrders(list);
-      renderStorePlanning();
-    }
-
-    function clearSampleOrders() {
-      const list = getStoredOrders().filter(o => !o.isSample);
-      setStoredOrders(list);
-      renderStorePlanning();
-    }
-
-    function escapeHtml(str) {
-      return String(str || '')
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-    }
-
-    // Rendu ultra-lisible du Planning Magasin (Gros compteurs + Cartes commandes aérées)
-    function renderStorePlanning() {
-      const allOrders = getStoredOrders();
-      const hasSamples = allOrders.some(o => o.isSample);
-      const clearBtn = document.getElementById('clearExamplesBtn');
-      if (hasSamples) {
-        clearBtn.classList.remove('hidden');
-      } else {
-        clearBtn.classList.add('hidden');
-      }
-
-      const filtered = allOrders.filter(o => {
-        const matchDay = activeDayFilter === 'ALL' || o.pickupIso === activeDayFilter;
-        const matchSlot = activeSlotFilter === 'ALL' || o.pickupSlot === activeSlotFilter;
-        return matchDay && matchSlot;
-      });
-
-      document.getElementById('filteredOrdersBadge').textContent =
-        filtered.length + (filtered.length > 1 ? ' commandes' : ' commande');
-
-      // Calcul des totaux de préparation cuisine
-      let totalPortions = 0;
-      let cheeseFondueKg = 0;
-      let cheeseRacletteKg = 0;
-      let charcuterieKg = 0;
-      let potatoesKg = 0;
-      let baguettes = 0;
-      let countAppFondue = 0;
-      let countAppRaclette = 0;
-
-      filtered.forEach(o => {
-        if (o.applianceFondue) countAppFondue++;
-        if (o.applianceRaclette) countAppRaclette++;
-        for (const k in o.items) {
-          const qty = o.items[k] || 0;
-          if (qty > 0 && FORMULAS[k]) {
-            totalPortions += qty;
-            cheeseFondueKg += qty * FORMULAS[k].cheeseFondueKg;
-            cheeseRacletteKg += qty * FORMULAS[k].cheeseRacletteKg;
-            charcuterieKg += qty * FORMULAS[k].charcuterieKg;
-            potatoesKg += qty * FORMULAS[k].potatoesKg;
-            baguettes += qty * FORMULAS[k].baguetteCount;
-          }
-        }
-      });
-
-      const bigMetrics = [
-        { label: 'Total Portions', value: `${totalPortions} pers.`, sub: 'Toutes formules', accent: 'border-slate-900 bg-white' },
-        { label: 'Fromage Fondue', value: `${cheeseFondueKg.toFixed(2).replace('.', ',')} kg`, sub: 'Comté, Beaufort, Emmental', accent: 'border-amber-500 bg-amber-50/60' },
-        { label: 'Fromage Raclette', value: `${cheeseRacletteKg.toFixed(2).replace('.', ',')} kg`, sub: 'Lait cru nature & fumé', accent: 'border-amber-500 bg-amber-50/60' },
-        { label: 'Charcuterie', value: `${charcuterieKg.toFixed(2).replace('.', ',')} kg`, sub: 'Plateaux montagne', accent: 'border-red-600 bg-red-50/50' },
-        { label: 'Pommes de terre', value: `${potatoesKg.toFixed(2).replace('.', ',')} kg`, sub: 'Grenailles raclette', accent: 'border-amber-600 bg-white' },
-        { label: 'Baguettes cubes', value: `${Math.ceil(baguettes)}`, sub: 'Baguette(s) à découper', accent: 'border-green-600 bg-green-50/50' },
-        { label: 'Appareils Fondue', value: `${countAppFondue}`, sub: 'Caquelon + réchaud', accent: 'border-slate-700 bg-white' },
-        { label: 'Appareils Raclette', value: `${countAppRaclette}`, sub: 'À préparer (caution 50 €)', accent: 'border-slate-700 bg-white' }
-      ];
-
-      document.getElementById('prepBigCardsGrid').innerHTML = bigMetrics.map(m => `
-        <div class="rounded-2xl p-4 border-l-4 shadow-sm ${m.accent}">
-          <span class="block text-xs font-extrabold uppercase tracking-wider text-slate-500">${m.label}</span>
-          <span class="block text-2xl sm:text-3xl font-display font-black text-slate-900 mt-1">${m.value}</span>
-          <span class="block text-[11px] font-semibold text-slate-600 mt-0.5">${m.sub}</span>
-        </div>
-      `).join('');
-
-      // Rendu des fiches commandes individuelles (zéro tableau serré)
-      const listContainer = document.getElementById('storeOrderCardsList');
-      if (filtered.length === 0) {
-        listContainer.innerHTML = `
-          <div class="bg-white rounded-3xl p-8 text-center border border-slate-200">
-            <p class="text-base font-extrabold text-slate-700">Aucune commande pour ce filtre</p>
-            <p class="text-xs text-slate-500 mt-1">Sélectionnez « Toutes les dates » ou « Tous les créneaux » pour voir l'ensemble des réservations.</p>
-          </div>
-        `;
-        return;
-      }
-
-      listContainer.innerHTML = filtered.map(o => {
-        const statusStyles = {
-          'À préparer': 'bg-amber-100 text-amber-950 border-amber-300',
-          'Prêt': 'bg-green-100 text-green-900 border-green-300',
-          'Retiré': 'bg-slate-200 text-slate-700 border-slate-300'
+    <!-- Script Application & Base de données Firebase -->
+    <script>
+        // Configuration Firebase Cloud Gratuite
+        const firebaseConfig = {
+            databaseURL: "https://comptoir-savoyard-default-rtdb.europe-west1.firebasedatabase.app/"
         };
-        const badgeCls = statusStyles[o.status] || statusStyles['À préparer'];
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
 
-        const itemsList = [];
-        for (const k in o.items) {
-          const qty = o.items[k] || 0;
-          if (qty > 0 && FORMULAS[k]) {
-            itemsList.push(`
-              <li class="flex items-center justify-between text-sm sm:text-base font-bold text-slate-900 bg-slate-50 px-3.5 py-2.5 rounded-xl border border-slate-200/70">
-                <span>• ${qty} pers. — ${FORMULAS[k].name}</span>
-                <span class="text-slate-600">${formatEuro(qty * FORMULAS[k].price)}</span>
-              </li>
-            `);
-          }
+        let catalog = {
+            products: [
+                { id: 'fondue', name: 'Fondue', price: 6.00, min: 2, desc: '50% Beaufort, 25% Montagnard (Gruyère de Savoie), 25% Comté. Pain offert.' },
+                { id: 'fondue-gourmande', name: 'Fondue gourmande', price: 9.00, min: 2, desc: 'Même base de fromages + 2 tranches de pavé au cèpe, 2 tranches de pavé piment, 2 tranches de bacon et 2 tranches de coppa de Savoie. Pain offert.' },
+                { id: 'raclette', name: 'Raclette', price: 11.00, min: 2, desc: '200g de raclette de Savoie, 1 tranche de jambon blanc, 1 tranche de jambon sec de Savoie, 2 tranches de coppa, 2 tranches de bacon, 2 tranches de rosette et 2 tranches de viande des Grisons.' },
+                { id: 'raclette-mixte', name: 'Raclette mixte', price: 11.00, min: 2, desc: 'Assortiment complet : 200g de raclette de Savoie, jambon blanc, jambon sec, coppa, bacon, rosette et viande des Grisons.' }
+            ],
+            drinks: [
+                { id: 'vin-savoie', name: 'Bouteille Vin Blanc de Savoie (75cl)', price: 15.00, discount: 0.10, desc: 'Offre spéciale : -10% de remise sur la bouteille de 75cl.' },
+                { id: 'eau-alpes', name: 'Eau minérale des Alpes (1L)', price: 3.50, desc: 'Plate ou gazeuse.' }
+            ]
+        };
+
+        let cart = [];
+        let globalOrders = [];
+
+        function renderCatalog() {
+            const prodContainer = document.getElementById('products-list');
+            prodContainer.innerHTML = catalog.products.map(p => `
+                <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between gap-3">
+                    <div>
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-bold text-sm text-stone-900">${p.name}</h3>
+                            <span class="text-amber-900 font-bold text-sm">${p.price.toFixed(2)} € <span class="text-xs font-normal text-stone-500">/ pers.</span></span>
+                        </div>
+                        <p class="text-xs text-stone-600 mt-1">${p.desc}</p>
+                        <p class="text-[11px] text-amber-800 font-medium mt-1"><i class="fa-solid fa-users text-[10px] mr-1"></i> Minimum ${p.min} personnes</p>
+                    </div>
+                    <div class="flex items-center justify-between pt-2 border-t border-stone-100">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs text-stone-500">Personnes :</span>
+                            <input type="number" id="qty-${p.id}" min="${p.min}" value="${p.min}" class="w-16 text-center text-xs p-1 border rounded-lg">
+                        </div>
+                        <button onclick="addToCart('${p.id}')" class="bg-amber-900 hover:bg-amber-800 text-white text-xs px-3 py-1.5 rounded-lg font-medium transition flex items-center gap-1">
+                            <i class="fa-solid fa-plus text-[10px]"></i> Ajouter
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            const drinkContainer = document.getElementById('drinks-list');
+            drinkContainer.innerHTML = catalog.drinks.map(d => `
+                <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between gap-3">
+                    <div>
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-bold text-sm text-stone-900">${d.name}</h3>
+                            <div class="text-right">
+                                ${d.discount ? `<span class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold mr-1">-10%</span>` : ''}
+                                <span class="text-amber-900 font-bold text-sm">${d.discount ? (d.price * (1 - d.discount)).toFixed(2) : d.price.toFixed(2)} €</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-stone-600 mt-1">${d.desc}</p>
+                    </div>
+                    <div class="flex items-center justify-end pt-2 border-t border-stone-100">
+                        <button onclick="addDrinkToCart('${d.id}')" class="bg-amber-900 hover:bg-amber-800 text-white text-xs px-3 py-1.5 rounded-lg font-medium transition flex items-center gap-1">
+                            <i class="fa-solid fa-plus text-[10px]"></i> Ajouter
+                        </button>
+                    </div>
+                </div>
+            `).join('');
         }
 
-        const appliances = [];
-        if (o.applianceFondue) appliances.push('Caquelon & Réchaud Fondue');
-        if (o.applianceRaclette) appliances.push('Appareil à Raclette');
+        function addToCart(id) {
+            const product = catalog.products.find(p => p.id === id);
+            const qtyInput = document.getElementById(`qty-${id}`);
+            const qty = parseInt(qtyInput.value) || product.min;
 
-        return `
-          <article class="bg-white rounded-3xl p-5 sm:p-6 shadow-sm border-2 ${o.status === 'Prêt' ? 'border-green-500' : 'border-slate-200'} space-y-4">
-            <!-- En-tête fiche client -->
-            <div class="flex flex-wrap items-start justify-between gap-3 border-b border-slate-100 pb-4">
-              <div class="space-y-1">
-                <div class="flex flex-wrap items-center gap-2">
-                  <span class="font-display font-black text-xs bg-slate-900 text-amber-400 px-2.5 py-1 rounded-lg">${escapeHtml(o.orderNumber || 'CMD')}</span>
-                  ${o.isSample ? '<span class="text-[11px] font-extrabold uppercase bg-purple-100 text-purple-800 px-2.5 py-0.5 rounded-full">Exemple</span>' : ''}
-                  <span class="text-xs font-extrabold px-3 py-1 rounded-full border ${badgeCls}">${escapeHtml(o.status || 'À préparer')}</span>
+            if (qty < product.min) {
+                alert(`Le minimum pour ${product.name} est de ${product.min} personnes.`);
+                return;
+            }
+
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.qty += qty;
+            } else {
+                cart.push({ id: product.id, name: product.name, price: product.price, qty: qty, type: 'formula' });
+            }
+            updateCartDisplay();
+        }
+
+        function addDrinkToCart(id) {
+            const drink = catalog.drinks.find(d => d.id === id);
+            const finalPrice = drink.discount ? drink.price * (1 - drink.discount) : drink.price;
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ id: drink.id, name: drink.name, price: finalPrice, qty: 1, type: 'drink' });
+            }
+            updateCartDisplay();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartDisplay();
+        }
+
+        function updateCartDisplay() {
+            const container = document.getElementById('cart-items');
+            const countBadge = document.getElementById('cart-count');
+            const totalEl = document.getElementById('cart-total');
+
+            countBadge.textContent = cart.reduce((sum, item) => sum + item.qty, 0);
+
+            if (cart.length === 0) {
+                container.innerHTML = `<p class="text-stone-400 text-xs py-4 text-center">Votre panier est vide</p>`;
+                totalEl.textContent = '0,00 €';
+                return;
+            }
+
+            let total = 0;
+            container.innerHTML = cart.map((item, index) => {
+                const itemTotal = item.price * item.qty;
+                total += itemTotal;
+                return `
+                    <div class="py-2 flex justify-between items-center text-xs">
+                        <div>
+                            <p class="font-bold text-stone-900">${item.name}</p>
+                            <p class="text-[11px] text-stone-500">${item.qty} ${item.type === 'formula' ? 'pers.' : 'unité(s)'} × ${item.price.toFixed(2)} €</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="font-bold text-amber-900">${itemTotal.toFixed(2)} €</span>
+                            <button onclick="removeFromCart(${index})" class="text-stone-400 hover:text-rose-600"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            totalEl.textContent = total.toFixed(2) + ' €';
+        }
+
+        function validateOrder() {
+            if (cart.length === 0) {
+                alert("Votre panier est vide.");
+                return;
+            }
+            const name = document.getElementById('client-name').value.trim();
+            const phone = document.getElementById('client-phone').value.trim();
+            const time = document.getElementById('client-time').value;
+
+            if (!name || !phone || !time) {
+                alert("Veuillez renseigner votre nom, votre numéro de téléphone et l'heure de retrait.");
+                return;
+            }
+
+            const newOrderKey = db.ref('orders').push().key;
+            const newOrder = {
+                id: 'CMD-' + Math.floor(1000 + Math.random() * 9000),
+                firebaseKey: newOrderKey,
+                client: name,
+                phone: phone,
+                time: time,
+                notes: document.getElementById('client-notes').value,
+                items: [...cart],
+                total: cart.reduce((sum, item) => sum + (item.price * item.qty), 0),
+                status: 'En attente',
+                date: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            };
+
+            db.ref('orders/' + newOrderKey).set(newOrder).then(() => {
+                cart = [];
+                updateCartDisplay();
+                document.getElementById('client-notes').value = '';
+                document.getElementById('order-success-banner').classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }).catch(error => {
+                alert("Erreur lors de l'envoi de la commande : " + error.message);
+            });
+        }
+
+        // Écoute en direct des commandes depuis Firebase
+        db.ref('orders').on('value', (snapshot) => {
+            const data = snapshot.val();
+            globalOrders = [];
+            if (data) {
+                Object.keys(data).forEach(key => {
+                    globalOrders.push({ ...data[key], firebaseKey: key });
+                });
+                // Tri du plus récent au plus ancien
+                globalOrders.reverse();
+            }
+            document.getElementById('admin-orders-count').textContent = globalOrders.length;
+            if(!document.getElementById('admin-dashboard').classList.contains('hidden')) {
+                renderAdminOrders();
+            }
+        });
+
+        // Admin functions
+        function openAdminLogin() {
+            document.getElementById('admin-modal').classList.remove('hidden');
+            document.getElementById('admin-login-screen').classList.remove('hidden');
+            document.getElementById('admin-dashboard').classList.add('hidden');
+            document.getElementById('admin-pin').value = '';
+            document.getElementById('pin-error').classList.add('hidden');
+        }
+
+        function closeAdminModal() {
+            document.getElementById('admin-modal').classList.add('hidden');
+        }
+
+        function checkAdminPin() {
+            const pin = document.getElementById('admin-pin').value;
+            if (pin === '1234') {
+                document.getElementById('admin-login-screen').classList.add('hidden');
+                document.getElementById('admin-dashboard').classList.remove('hidden');
+                renderAdminOrders();
+            } else {
+                document.getElementById('pin-error').classList.remove('hidden');
+            }
+        }
+
+        function logoutAdmin() {
+            document.getElementById('admin-dashboard').classList.add('hidden');
+            document.getElementById('admin-login-screen').classList.remove('hidden');
+        }
+
+        function renderAdminOrders() {
+            const container = document.getElementById('admin-orders-list');
+
+            if (globalOrders.length === 0) {
+                container.innerHTML = `<p class="text-stone-400 text-xs text-center py-4">Aucune commande pour le moment.</p>`;
+                return;
+            }
+
+            container.innerHTML = globalOrders.map((o) => `
+                <div class="bg-stone-50 border border-stone-200 rounded-xl p-3 text-xs space-y-2">
+                    <div class="flex justify-between items-start font-bold">
+                        <span>${o.id} - ${o.client} (${o.phone})</span>
+                        <span class="text-amber-900 bg-amber-100 px-2 py-0.5 rounded">Retrait à ${o.time}</span>
+                    </div>
+                    <div class="text-stone-600 text-[11px]">
+                        ${o.items.map(i => `• ${i.qty}x ${i.name}`).join('<br>')} ${o.notes ? `<br><em>Note : ${o.notes}</em>` : ''}
+                    </div>
+                    <div class="flex justify-between items-center pt-2 border-t border-stone-200 text-[11px]">
+                        <span class="font-bold">Total : ${o.total.toFixed(2)} €</span>
+                        <div class="flex items-center gap-2">
+                            <select onchange="updateOrderStatus('${o.firebaseKey}', this.value)" class="p-1 border rounded bg-white font-medium">
+                                <option ${o.status === 'En attente' ? 'selected' : ''}>En attente</option>
+                                <option ${o.status === 'En préparation' ? 'selected' : ''}>En préparation</option>
+                                <option ${o.status === 'Prête' ? 'selected' : ''}>Prête</option>
+                            </select>
+                            <button onclick="deleteOrder('${o.firebaseKey}')" class="text-rose-600 hover:text-rose-800"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
                 </div>
-                <h5 class="text-xl sm:text-2xl font-extrabold text-slate-900 pt-1">${escapeHtml(o.customerName)}</h5>
-                <a href="tel:${escapeHtml(o.customerPhone)}" class="inline-flex items-center gap-1.5 text-sm font-bold text-sky-700 hover:underline">
-                  <span>📞 ${escapeHtml(o.customerPhone)}</span>
-                </a>
-              </div>
+            `).join('');
+        }
 
-              <!-- Pastille Jour & Créneau -->
-              <div class="bg-red-50 border border-red-200 rounded-2xl px-4 py-2.5 text-left sm:text-right">
-                <span class="block text-xs font-extrabold uppercase tracking-wider text-red-700">Retrait prévu</span>
-                <span class="block text-sm sm:text-base font-black text-slate-900">${escapeHtml(o.pickupLabel)}</span>
-                <span class="block text-xs sm:text-sm font-extrabold text-red-700">${escapeHtml(o.pickupSlot)}</span>
-              </div>
-            </div>
+        function updateOrderStatus(firebaseKey, status) {
+            db.ref('orders/' + firebaseKey).update({ status: status });
+        }
 
-            <!-- Liste large des formules commandées -->
-            <ul class="space-y-2">
-              ${itemsList.join('')}
-            </ul>
+        function deleteOrder(firebaseKey) {
+            if (confirm("Supprimer cette commande ?")) {
+                db.ref('orders/' + firebaseKey).remove();
+            }
+        }
 
-            <!-- Badge appareil si demandé -->
-            ${appliances.length > 0 ? `
-              <div class="bg-amber-50 border border-amber-300 rounded-2xl px-4 py-3 flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm font-extrabold text-amber-950">
-                <span>🔌 Appareil à prévoir : ${appliances.join(' + ')}</span>
-                <span class="bg-amber-500 text-slate-950 px-2.5 py-1 rounded-lg text-xs">Caution 50 € espèces</span>
-              </div>
-            ` : ''}
-
-            <!-- Pied de fiche : Total & gros boutons d'action tactile -->
-            <div class="pt-3 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div>
-                <span class="text-xs font-bold text-slate-500 uppercase">Total à encaisser</span>
-                <span class="block text-2xl font-display font-black text-slate-900">${formatEuro(o.totalPrice)}</span>
-              </div>
-
-              <div class="flex flex-wrap gap-2 no-print">
-                <button type="button" onclick="updateOrderStatus(${o.id}, 'Prêt')" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold bg-green-600 hover:bg-green-700 text-white shadow-sm transition cursor-pointer">
-                  ✓ Marquer Prêt
-                </button>
-                <button type="button" onclick="updateOrderStatus(${o.id}, 'Retiré')" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold bg-slate-800 hover:bg-slate-900 text-white transition cursor-pointer">
-                  📦 Marquer Retiré
-                </button>
-                <button type="button" onclick="deleteStoreOrder(${o.id})" class="px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 transition cursor-pointer">
-                  Supprimer
-                </button>
-              </div>
-            </div>
-          </article>
-        `;
-      }).join('');
-    }
-
-    // Initialisation au chargement
-    buildUpcomingDays();
-    seedInitialSampleOrders();
-  </script>
-</body>
-</html>
-```
+        function generateQRCode() {
+            const container = document.getElementById('qrcode-container');
+            container.innerHTML = '';
+            const currentUrl = window.location.href.split('?')[0];
+            
+            new QRCode(container, {
+                text: currentUrl,
+                width: 160,
+                height: 160,
+                colorDark: "#292524",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
