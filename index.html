@@ -32,8 +32,9 @@
     </header>
 
     <!-- Bannière Caution Appareil -->
-    <div class="bg-amber-100 border-b border-amber-200 text-amber-900 px-4 py-2 text-xs text-center font-medium">
-        <i class="fa-solid fa-circle-info mr-1 text-amber-700"></i> Prêt d'appareil gratuit (Caution de 50€ en espèces demandée en magasin).
+    <div class="bg-amber-100 border-b border-amber-200 text-amber-900 px-4 py-2.5 text-xs text-center font-medium flex items-center justify-center gap-2">
+        <i class="fa-solid fa-circle-info text-amber-700 text-sm"></i> 
+        <span>Prêt d'appareil à fondue/raclette <strong>gratuit</strong> (Caution de 50€ en espèces demandée en magasin).</span>
     </div>
 
     <!-- Contenu Principal -->
@@ -45,7 +46,7 @@
                 <i class="fa-solid fa-circle-check text-emerald-600 text-xl mt-0.5"></i>
                 <div>
                     <h3 class="font-bold text-sm">Commande enregistrée avec succès !</h3>
-                    <p class="text-xs text-emerald-700 mt-0.5">Votre commande a été transmise en temps réel au magasin. Vous pourrez venir la récupérer à l'heure choisie.</p>
+                    <p class="text-xs text-emerald-700 mt-0.5">Votre commande a été transmise en direct au magasin. Vous pourrez venir la récupérer à l'heure choisie.</p>
                 </div>
             </div>
         </div>
@@ -184,10 +185,10 @@
 
         let catalog = {
             products: [
-                { id: 'fondue', name: 'Fondue', price: 6.00, min: 2, desc: '50% Beaufort, 25% Montagnard (Gruyère de Savoie), 25% Comté. Pain offert.' },
-                { id: 'fondue-gourmande', name: 'Fondue gourmande', price: 9.00, min: 2, desc: 'Même base de fromages + 2 tranches de pavé au cèpe, 2 tranches de pavé piment, 2 tranches de bacon et 2 tranches de coppa de Savoie. Pain offert.' },
+                { id: 'fondue', name: 'Fondue', price: 6.00, min: 2, desc: '50% Beaufort, 25% Montagnard (Gruyère de Savoie), 25% Comté. Le pain est offert.' },
+                { id: 'fondue-gourmande', name: 'Fondue gourmande', price: 9.00, min: 2, desc: 'Même base de fromages + 2 tranches de pavé au cèpe, 2 tranches de pavé piment, 2 tranches de bacon et 2 tranches de coppa de Savoie. Le pain est offert.' },
                 { id: 'raclette', name: 'Raclette', price: 11.00, min: 2, desc: '200g de raclette de Savoie, 1 tranche de jambon blanc, 1 tranche de jambon sec de Savoie, 2 tranches de coppa, 2 tranches de bacon, 2 tranches de rosette et 2 tranches de viande des Grisons.' },
-                { id: 'raclette-mixte', name: 'Raclette mixte', price: 11.00, min: 2, desc: 'Assortiment complet : 200g de raclette de Savoie, jambon blanc, jambon sec, coppa, bacon, rosette et viande des Grisons.' }
+                { id: 'raclette-mixte', name: 'Raclette mixte', price: 11.00, min: 2, desc: '200g de raclette de Savoie, 1 tranche de jambon blanc, 1 tranche de jambon sec de Savoie, 2 tranches de coppa, 2 tranches de bacon, 2 tranches de rosette et 2 tranches de viande des Grisons.' }
             ],
             drinks: [
                 { id: 'vin-savoie', name: 'Bouteille Vin Blanc de Savoie (75cl)', price: 15.00, discount: 0.10, desc: 'Offre spéciale : -10% de remise sur la bouteille de 75cl.' },
@@ -361,7 +362,6 @@
                 Object.keys(data).forEach(key => {
                     globalOrders.push({ ...data[key], firebaseKey: key });
                 });
-                // Tri du plus récent au plus ancien
                 globalOrders.reverse();
             }
             document.getElementById('admin-orders-count').textContent = globalOrders.length;
