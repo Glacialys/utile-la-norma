@@ -13,21 +13,18 @@
 </head>
 <body class="bg-amber-50/50 text-stone-800 font-sans min-h-screen flex flex-col justify-between">
 
-    <!-- En-tête Bleu avec Logo Utile -->
-    <header class="bg-blue-900 text-white shadow-md sticky top-0 z-40">
+    <!-- En-tête Bleu Ciel -->
+    <header class="bg-sky-700 text-white shadow-md sticky top-0 z-40">
         <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <!-- Logo Utile -->
-                <div class="bg-red-600 text-white font-black tracking-tighter text-xs px-2.5 py-2 rounded-lg border-2 border-white shadow-sm select-none">
-                    UTILE
-                </div>
+            <div class="flex items-center space-x-2.5">
+                <i class="fa-solid fa-store text-xl text-sky-200"></i>
                 <div>
                     <h1 class="font-bold text-lg tracking-wide leading-tight">Utile La Norma</h1>
-                    <p class="text-xs text-blue-200">Retrait en magasin - Fondues, Raclettes & Charcuterie</p>
+                    <p class="text-xs text-sky-100">Retrait en magasin - Fondues, Raclettes & Charcuterie</p>
                 </div>
             </div>
             <div class="flex items-center space-x-2">
-                <button type="button" onclick="openAdminLogin()" class="bg-blue-800 hover:bg-blue-700 text-blue-50 px-3 py-1.5 rounded-lg text-xs font-medium border border-blue-600 transition flex items-center gap-1.5">
+                <button type="button" onclick="openAdminLogin()" class="bg-sky-600 hover:bg-sky-500 text-white px-3 py-1.5 rounded-lg text-xs font-medium border border-sky-400/50 transition flex items-center gap-1.5">
                     <i class="fa-solid fa-lock text-xs"></i><span>Admin</span>
                 </button>
             </div>
@@ -53,7 +50,7 @@
             <!-- Catalogue Formules & Information Vin -->
             <div class="md:col-span-2 space-y-4">
                 <h2 class="text-lg font-bold text-stone-900 flex items-center gap-2 border-b pb-2">
-                    <i class="fa-solid fa-utensils text-blue-800"></i> Nos Formules & Préparations
+                    <i class="fa-solid fa-utensils text-sky-700"></i> Nos Formules & Préparations
                 </h2>
 
                 <div id="products-list" class="space-y-4">
@@ -79,8 +76,8 @@
             <div class="md:col-span-1">
                 <div class="bg-white rounded-2xl shadow-sm border border-stone-200 p-4 sticky top-20">
                     <h3 class="font-bold text-stone-900 mb-3 flex items-center justify-between border-b pb-2">
-                        <span><i class="fa-solid fa-basket-shopping text-blue-800 mr-1.5"></i> Votre Panier</span>
-                        <span id="cart-count" class="bg-blue-100 text-blue-900 text-xs px-2 py-0.5 rounded-full font-bold">0</span>
+                        <span><i class="fa-solid fa-basket-shopping text-sky-700 mr-1.5"></i> Votre Panier</span>
+                        <span id="cart-count" class="bg-sky-100 text-sky-900 text-xs px-2 py-0.5 rounded-full font-bold">0</span>
                     </h3>
 
                     <div id="cart-items" class="divide-y divide-stone-100 max-h-50 overflow-y-auto mb-4 text-sm">
@@ -90,7 +87,7 @@
                     <!-- Option Prêt d'appareil -->
                     <div class="bg-amber-50 border border-amber-200 p-3 rounded-xl mb-3 space-y-2">
                         <label class="block text-[11px] font-bold text-amber-900">Prêt d'appareil gratuit (Caution 50€ en espèces)</label>
-                        <select id="loan-device" class="w-full text-xs p-2 border border-amber-300 rounded-lg bg-white focus:ring-1 focus:ring-blue-800 focus:outline-none">
+                        <select id="loan-device" class="w-full text-xs p-2 border border-amber-300 rounded-lg bg-white focus:ring-1 focus:ring-sky-700 focus:outline-none">
                             <option value="Aucun">Aucun appareil nécessaire</option>
                             <option value="Appareil à fondue">Appareil à fondue</option>
                             <option value="Appareil à raclette">Appareil à raclette</option>
@@ -101,7 +98,7 @@
                     <div class="border-t pt-3 space-y-2 text-xs">
                         <div class="flex justify-between font-bold text-sm text-stone-900 pt-1">
                             <span>Total estimé :</span>
-                            <span id="cart-total" class="text-blue-900">0,00 €</span>
+                            <span id="cart-total" class="text-sky-800">0,00 €</span>
                         </div>
                     </div>
 
@@ -110,27 +107,27 @@
                         <h4 class="font-bold text-xs uppercase tracking-wider text-stone-600">Informations de retrait</h4>
                         <div>
                             <label class="block text-[11px] font-medium text-stone-600 mb-1">Votre Nom / Prénom</label>
-                            <input type="text" id="client-name" placeholder="Ex: Jean Dupont" class="w-full text-xs p-2 border border-stone-300 rounded-lg focus:ring-1 focus:ring-blue-800 focus:outline-none">
+                            <input type="text" id="client-name" placeholder="Ex: Jean Dupont" class="w-full text-xs p-2 border border-stone-300 rounded-lg focus:ring-1 focus:ring-sky-700 focus:outline-none">
                         </div>
                         <div>
                             <label class="block text-[11px] font-medium text-stone-600 mb-1">Numéro de téléphone</label>
-                            <input type="tel" id="client-phone" placeholder="Ex: 06 12 34 56 78" class="w-full text-xs p-2 border border-stone-300 rounded-lg focus:ring-1 focus:ring-blue-800 focus:outline-none">
+                            <input type="tel" id="client-phone" placeholder="Ex: 06 12 34 56 78" class="w-full text-xs p-2 border border-stone-300 rounded-lg focus:ring-1 focus:ring-sky-700 focus:outline-none">
                         </div>
                         <div>
                             <label class="block text-[11px] font-medium text-stone-600 mb-1">Jour de retrait (à partir de demain)</label>
-                            <input type="date" id="client-date" class="w-full text-xs p-2 border border-stone-300 rounded-lg bg-white focus:ring-1 focus:ring-blue-800 focus:outline-none">
+                            <input type="date" id="client-date" class="w-full text-xs p-2 border border-stone-300 rounded-lg bg-white focus:ring-1 focus:ring-sky-700 focus:outline-none">
                             <p class="text-[10px] text-stone-500 mt-0.5">Réservation impossible pour le jour même.</p>
                         </div>
                         <div>
                             <label class="block text-[11px] font-medium text-stone-600 mb-1">Créneau de retrait (Fermeture 19h)</label>
-                            <select id="client-slot" class="w-full text-xs p-2 border border-stone-300 rounded-lg bg-white focus:ring-1 focus:ring-blue-800 focus:outline-none">
+                            <select id="client-slot" class="w-full text-xs p-2 border border-stone-300 rounded-lg bg-white focus:ring-1 focus:ring-sky-700 focus:outline-none">
                                 <option value="">-- Choisissez un créneau --</option>
                                 <option value="Midi (dès 11h00)">Midi (Retrait dès 11h00)</option>
                                 <option value="Soir (dès 17h00)">Soir (Retrait dès 17h00)</option>
                             </select>
                         </div>
 
-                        <button type="button" onclick="validateOrder()" class="w-full bg-blue-900 hover:bg-blue-800 text-white font-bold py-2.5 px-4 rounded-xl shadow transition text-xs flex items-center justify-center gap-2 mt-2">
+                        <button type="button" onclick="validateOrder()" class="w-full bg-sky-700 hover:bg-sky-800 text-white font-bold py-2.5 px-4 rounded-xl shadow transition text-xs flex items-center justify-center gap-2 mt-2">
                             <i class="fa-solid fa-check"></i> Valider ma commande
                         </button>
                     </div>
@@ -149,13 +146,13 @@
 
             <!-- Écran de connexion Admin -->
             <div id="admin-login-screen" class="space-y-4 py-8 text-center max-w-sm mx-auto">
-                <div class="w-12 h-12 bg-blue-100 text-blue-800 rounded-full flex items-center justify-center mx-auto mb-2 text-lg">
+                <div class="w-12 h-12 bg-sky-100 text-sky-800 rounded-full flex items-center justify-center mx-auto mb-2 text-lg">
                     <i class="fa-solid fa-lock"></i>
                 </div>
                 <h3 class="font-bold text-lg text-stone-900">Accès Administrateur</h3>
                 <p class="text-xs text-stone-500">Entrez votre code PIN pour accéder au suivi des commandes en temps réel.</p>
-                <input type="password" id="admin-pin" placeholder="Code PIN" class="w-full text-center text-lg p-2.5 border border-stone-300 rounded-xl focus:ring-2 focus:ring-blue-800 focus:outline-none tracking-widest">
-                <button type="button" onclick="checkAdminPin()" class="w-full bg-blue-900 text-white py-2.5 rounded-xl font-bold text-xs hover:bg-blue-800 transition">Se connecter</button>
+                <input type="password" id="admin-pin" placeholder="Code PIN" class="w-full text-center text-lg p-2.5 border border-stone-300 rounded-xl focus:ring-2 focus:ring-sky-700 focus:outline-none tracking-widest">
+                <button type="button" onclick="checkAdminPin()" class="w-full bg-sky-700 text-white py-2.5 rounded-xl font-bold text-xs hover:bg-sky-800 transition">Se connecter</button>
                 <p id="pin-error" class="text-xs text-rose-600 hidden">Code PIN incorrect</p>
             </div>
 
@@ -167,7 +164,7 @@
                         <p class="text-xs text-stone-500">Synchronisé en direct (<span id="admin-orders-count">0</span> ligne(s))</p>
                     </div>
                     <div class="flex items-center gap-3">
-                        <button type="button" onclick="playAlertBeep()" class="bg-blue-100 hover:bg-blue-200 text-blue-900 text-xs px-3 py-1.5 rounded-lg font-medium flex items-center gap-1.5 transition">
+                        <button type="button" onclick="playAlertBeep()" class="bg-sky-100 hover:bg-sky-200 text-sky-900 text-xs px-3 py-1.5 rounded-lg font-medium flex items-center gap-1.5 transition">
                             <i class="fa-solid fa-volume-high"></i> Tester le bip sonore
                         </button>
                         <button type="button" onclick="logoutAdmin()" class="text-xs text-rose-700 hover:underline font-medium">Déconnexion</button>
@@ -239,30 +236,10 @@
 
         let catalog = {
             products: [
-                {
-                    id: 'fondue',
-                    name: 'Fondue',
-                    price: 6.00,
-                    desc: '50% Beaufort, 25% Montagnard (Gruyère de Savoie), 25% Comté. <span class="text-emerald-700 font-bold">Le pain est offert.</span>'
-                },
-                {
-                    id: 'plateau-charcuterie',
-                    name: 'Plateau charcuterie',
-                    price: 3.00,
-                    desc: '2 tranches de pavé aux cèpes, 2 tranches de pavé aux piments, 2 tranches de bacon de Savoie, 2 tranches de coppa de Savoie et 2 tranches de rosette.'
-                },
-                {
-                    id: 'raclette',
-                    name: 'Raclette',
-                    price: 11.00,
-                    desc: '200g de raclette de Savoie, 1 tranche de jambon blanc, 1 tranche de jambon sec de Savoie, 2 tranches de coppa de Savoie, 2 tranches de bacon de Savoie, 2 tranches de rosette et 2 tranches de viande de Grison.'
-                },
-                {
-                    id: 'raclette-mixte',
-                    name: 'Raclette mixte',
-                    price: 11.00,
-                    desc: '100g de raclette de Savoie, 50g de raclette fumée de Savoie, 50g de raclette à l\'ail des ours de Savoie, 1 tranche de jambon blanc, 1 tranche de jambon sec de Savoie, 2 tranches de coppa de Savoie, 2 tranches de bacon de Savoie, 2 tranches de rosette et 2 tranches de viande de Grison.'
-                }
+                { id: 'fondue', name: 'Fondue', price: 6.00, desc: '50% Beaufort, 25% Montagnard (Gruyère de Savoie), 25% Comté. <span class="text-emerald-700 font-bold">Le pain est offert.</span>' },
+                { id: 'plateau-charcuterie', name: 'Plateau charcuterie', price: 3.00, desc: '2 tranches de pavé aux cèpes, 2 tranches de pavé aux piments, 2 tranches de bacon de Savoie, 2 tranches de coppa de Savoie et 2 tranches de rosette.' },
+                { id: 'raclette', name: 'Raclette', price: 11.00, desc: '200g de raclette de Savoie, 1 tranche de jambon blanc, 1 tranche de jambon sec de Savoie, 2 tranches de coppa de Savoie, 2 tranches de bacon de Savoie, 2 tranches de rosette et 2 tranches de viande de Grison.' },
+                { id: 'raclette-mixte', name: 'Raclette mixte', price: 11.00, desc: '100g de raclette de Savoie, 50g de raclette fumée de Savoie, 50g de raclette à l\'ail des ours de Savoie, 1 tranche de jambon blanc, 1 tranche de jambon sec de Savoie, 2 tranches de coppa de Savoie, 2 tranches de bacon de Savoie, 2 tranches de rosette et 2 tranches de viande de Grison.' }
             ]
         };
 
@@ -331,7 +308,7 @@
                     <div>
                         <div class="flex justify-between items-start">
                             <h3 class="font-bold text-sm text-stone-900">${p.name}</h3>
-                            <span class="text-blue-900 font-bold text-sm">${p.price.toFixed(2)} € <span class="text-xs font-normal text-stone-500">/ pers.</span></span>
+                            <span class="text-sky-800 font-bold text-sm">${p.price.toFixed(2)} € <span class="text-xs font-normal text-stone-500">/ pers.</span></span>
                         </div>
                         <p class="text-xs text-stone-600 mt-1">${p.desc}</p>
                     </div>
@@ -344,7 +321,7 @@
                                 <button type="button" onclick="adjustQty('${p.id}', 1)" class="px-2.5 py-1 text-stone-600 hover:bg-stone-200 font-bold text-xs">+</button>
                             </div>
                         </div>
-                        <button type="button" onclick="addToCart('${p.id}')" class="bg-blue-900 hover:bg-blue-800 text-white text-xs px-3 py-1.5 rounded-lg font-medium transition flex items-center gap-1">
+                        <button type="button" onclick="addToCart('${p.id}')" class="bg-sky-700 hover:bg-sky-800 text-white text-xs px-3 py-1.5 rounded-lg font-medium transition flex items-center gap-1">
                             <i class="fa-solid fa-plus text-[10px]"></i> Ajouter
                         </button>
                     </div>
@@ -423,7 +400,7 @@
                                 <span class="px-2 text-xs font-bold">${item.qty}</span>
                                 <button type="button" onclick="updateCartQty(${index}, 1)" class="px-1.5 py-0.5 text-stone-600 hover:bg-stone-200">+</button>
                             </div>
-                            <span class="font-bold text-blue-900 w-12 text-right">${itemTotal.toFixed(2)} €</span>
+                            <span class="font-bold text-sky-800 w-12 text-right">${itemTotal.toFixed(2)} €</span>
                             <button type="button" onclick="removeFromCart(${index})" class="text-stone-400 hover:text-rose-600 ml-1"><i class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
