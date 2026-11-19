@@ -47,13 +47,21 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             
-            <!-- Catalogue Formules -->
+            <!-- Catalogue Formules & Offre -->
             <div class="md:col-span-2 space-y-4">
                 <h2 class="text-lg font-bold text-stone-900 flex items-center gap-2 border-b pb-2">
                     <i class="fa-solid fa-utensils text-amber-800"></i> Nos Formules & Préparations
                 </h2>
 
                 <div id="products-list" class="space-y-4">
+                    <!-- Généré par JS -->
+                </div>
+
+                <h2 class="text-lg font-bold text-stone-900 flex items-center gap-2 border-b pb-2 pt-3">
+                    <i class="fa-solid fa-wine-bottle text-amber-800"></i> Offre Spéciale Vin de Savoie
+                </h2>
+
+                <div id="extras-list" class="space-y-4">
                     <!-- Généré par JS -->
                 </div>
             </div>
@@ -70,13 +78,14 @@
                         <p class="text-stone-400 text-xs py-4 text-center">Votre panier est vide</p>
                     </div>
 
-                    <!-- Option Prêt d'appareil (Fondue ou Raclette) -->
+                    <!-- Option Prêt d'appareil -->
                     <div class="bg-amber-50 border border-amber-200 p-3 rounded-xl mb-3 space-y-2">
                         <label class="block text-[11px] font-bold text-amber-900">Prêt d'appareil gratuit (Caution 50€ en espèces)</label>
                         <select id="loan-device" class="w-full text-xs p-2 border border-amber-300 rounded-lg bg-white focus:ring-1 focus:ring-amber-800 focus:outline-none">
                             <option value="Aucun">Aucun appareil nécessaire</option>
                             <option value="Appareil à fondue">Appareil à fondue</option>
                             <option value="Appareil à raclette">Appareil à raclette</option>
+                            <option value="Prêt des 2 appareils (fondue + raclette)">Prêt des 2 appareils (fondue + raclette)</option>
                         </select>
                     </div>
 
@@ -207,17 +216,28 @@
             'raclette-mixte': {
                 badgeClass: 'bg-emerald-100 text-emerald-900 border border-emerald-300',
                 rowClass: 'bg-emerald-50/40'
+            },
+            'vin-savoie-75cl': {
+                badgeClass: 'bg-violet-100 text-violet-900 border border-violet-300',
+                rowClass: 'bg-violet-50/40'
             }
         };
 
         let catalog = {
             products: [
-                { id: 'fondue', name: 'Fondue', price: 6.00, desc: '50% Beaufort, 25% Montagnard (Gruyère de Savoie), 25% Comté. Le pain est offert.' },
-                { id: 'plateau-charcuterie', name: 'Plateau charcuterie', price: 3.00, desc: '2 tranches de pavé aux cèpes, 2 tranches de pavé aux piments, 2 tranches de bacon de Savoie, 2 tranches de coppa de Savoie et 2 tranches de rosette.' },
-                { id: 'raclette', name: 'Raclette', price: 11.00, desc: '200g de raclette de Savoie, 1 tranche de jambon blanc, 1 tranche de jambon sec de Savoie, 2 tranches de coppa de Savoie, 2 tranches de bacon de Savoie, 2 tranches de rosette et 2 tranches de viande des Grisons.' },
-                { id: 'raclette-mixte', name: 'Raclette mixte', price: 11.00, desc: '200g de raclette de Savoie, 1 tranche de jambon blanc, 1 tranche de jambon sec de Savoie, 2 tranches de coppa de Savoie, 2 tranches de bacon de Savoie, 2 tranches de rosette et 2 tranches de viande des Grisons.' }
+                { id: 'fondue', name: 'Fondue', price: 6.00, unitLabel: 'Personnes :', unitShort: 'pers.', desc: '50% Beaufort, 25% Montagnard (Gruyère de Savoie), 25% Comté. Le pain est offert.' },
+                { id: 'plateau-charcuterie', name: 'Plateau charcuterie', price: 3.00, unitLabel: 'Personnes :', unitShort: 'pers.', desc: '2 tranches de pavé aux cèpes, 2 tranches de pavé aux piments, 2 tranches de bacon de Savoie, 2 tranches de coppa de Savoie et 2 tranches de rosette.' },
+                { id: 'raclette', name: 'Raclette', price: 11.00, unitLabel: 'Personnes :', unitShort: 'pers.', desc: '200g de raclette de Savoie, 1 tranche de jambon blanc, 1 tranche de jambon sec de Savoie, 2 tranches de coppa de Savoie, 2 tranches de bacon de Savoie, 2 tranches de rosette et 2 tranches de viande de Grison.' },
+                { id: 'raclette-mixte', name: 'Raclette mixte', price: 11.00, unitLabel: 'Personnes :', unitShort: 'pers.', desc: '100g de raclette de Savoie, 50g de raclette fumée de Savoie, 50g de raclette à l\'ail des ours de Savoie, 1 tranche de jambon blanc, 1 tranche de jambon sec de Savoie, 2 tranches de coppa de Savoie, 2 tranches de bacon de Savoie, 2 tranches de rosette et 2 tranches de viande de Grison.' }
+            ],
+            extras: [
+                { id: 'vin-savoie-75cl', name: 'Vin de Savoie (75cl) - Remise -10%', price: 13.50, unitLabel: 'Bouteilles :', unitShort: 'btl', desc: 'Offre spéciale : -10% de remise sur une bouteille de vin de Savoie de 75cl (13,50 € au lieu de 15,00 €).' }
             ]
         };
+
+        function getAllItems() {
+            return [...catalog.products, ...catalog.extras];
+        }
 
         let cart = [];
         let globalOrders = [];
@@ -235,7 +255,7 @@
                     </div>
                     <div class="flex items-center justify-between pt-2 border-t border-stone-100">
                         <div class="flex items-center gap-2">
-                            <span class="text-xs text-stone-500">Personnes :</span>
+                            <span class="text-xs text-stone-500">${p.unitLabel}</span>
                             <div class="flex items-center border rounded-lg bg-stone-50 overflow-hidden">
                                 <button type="button" onclick="adjustQty('${p.id}', -1)" class="px-2.5 py-1 text-stone-600 hover:bg-stone-200 font-bold text-xs">-</button>
                                 <input type="number" id="qty-${p.id}" min="0" value="0" class="w-12 text-center text-xs p-1 bg-transparent focus:outline-none">
@@ -243,6 +263,35 @@
                             </div>
                         </div>
                         <button type="button" onclick="addToCart('${p.id}')" class="bg-amber-900 hover:bg-amber-800 text-white text-xs px-3 py-1.5 rounded-lg font-medium transition flex items-center gap-1">
+                            <i class="fa-solid fa-plus text-[10px]"></i> Ajouter
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            const extrasContainer = document.getElementById('extras-list');
+            extrasContainer.innerHTML = catalog.extras.map(e => `
+                <div class="bg-white p-4 rounded-xl border border-violet-200 shadow-sm flex flex-col justify-between gap-3">
+                    <div>
+                        <div class="flex justify-between items-start gap-2">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <h3 class="font-bold text-sm text-stone-900">${e.name}</h3>
+                                <span class="text-[10px] bg-violet-100 text-violet-900 px-2 py-0.5 rounded-full font-bold">-10%</span>
+                            </div>
+                            <span class="text-amber-900 font-bold text-sm whitespace-nowrap">${e.price.toFixed(2)} € <span class="text-xs font-normal text-stone-500">/ btl</span></span>
+                        </div>
+                        <p class="text-xs text-stone-600 mt-1">${e.desc}</p>
+                    </div>
+                    <div class="flex items-center justify-between pt-2 border-t border-stone-100">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs text-stone-500">${e.unitLabel}</span>
+                            <div class="flex items-center border rounded-lg bg-stone-50 overflow-hidden">
+                                <button type="button" onclick="adjustQty('${e.id}', -1)" class="px-2.5 py-1 text-stone-600 hover:bg-stone-200 font-bold text-xs">-</button>
+                                <input type="number" id="qty-${e.id}" min="0" value="0" class="w-12 text-center text-xs p-1 bg-transparent focus:outline-none">
+                                <button type="button" onclick="adjustQty('${e.id}', 1)" class="px-2.5 py-1 text-stone-600 hover:bg-stone-200 font-bold text-xs">+</button>
+                            </div>
+                        </div>
+                        <button type="button" onclick="addToCart('${e.id}')" class="bg-amber-900 hover:bg-amber-800 text-white text-xs px-3 py-1.5 rounded-lg font-medium transition flex items-center gap-1">
                             <i class="fa-solid fa-plus text-[10px]"></i> Ajouter
                         </button>
                     </div>
@@ -259,12 +308,13 @@
         }
 
         function addToCart(id) {
-            const product = catalog.products.find(p => p.id === id);
+            const itemDef = getAllItems().find(p => p.id === id);
+            if (!itemDef) return;
             const qtyInput = document.getElementById(`qty-${id}`);
             const qty = parseInt(qtyInput.value) || 0;
 
             if (qty <= 0) {
-                alert("Veuillez indiquer au moins 1 personne.");
+                alert("Veuillez indiquer une quantité d'au moins 1.");
                 return;
             }
 
@@ -272,7 +322,13 @@
             if (existing) {
                 existing.qty += qty;
             } else {
-                cart.push({ id: product.id, name: product.name, price: product.price, qty: qty, type: 'formula' });
+                cart.push({
+                    id: itemDef.id,
+                    name: itemDef.name,
+                    price: itemDef.price,
+                    qty: qty,
+                    unitShort: itemDef.unitShort
+                });
             }
             qtyInput.value = 0;
             updateCartDisplay();
@@ -308,11 +364,12 @@
             container.innerHTML = cart.map((item, index) => {
                 const itemTotal = item.price * item.qty;
                 total += itemTotal;
+                const unitLabel = item.unitShort || 'pers.';
                 return `
                     <div class="py-2 flex justify-between items-center text-xs">
                         <div>
                             <p class="font-bold text-stone-900">${item.name}</p>
-                            <p class="text-[11px] text-stone-500">${item.qty} pers. × ${item.price.toFixed(2)} €</p>
+                            <p class="text-[11px] text-stone-500">${item.qty} ${unitLabel} × ${item.price.toFixed(2)} €</p>
                         </div>
                         <div class="flex items-center gap-2">
                             <div class="flex items-center border rounded bg-stone-50">
