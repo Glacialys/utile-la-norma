@@ -20,7 +20,7 @@
                 <i class="fa-solid fa-fire-burner text-2xl text-amber-400"></i>
                 <div>
                     <h1 class="font-bold text-lg tracking-wide">Utile La Norma</h1>
-                    <p class="text-xs text-amber-200">Retrait en magasin - Fondues & Raclettes</p>
+                    <p class="text-xs text-amber-200">Retrait en magasin - Fondues, Raclettes & Charcuterie</p>
                 </div>
             </div>
             <div class="flex items-center space-x-2">
@@ -99,11 +99,15 @@
                             <input type="tel" id="client-phone" placeholder="Ex: 06 12 34 56 78" class="w-full text-xs p-2 border border-stone-300 rounded-lg focus:ring-1 focus:ring-amber-800 focus:outline-none">
                         </div>
                         <div>
+                            <label class="block text-[11px] font-medium text-stone-600 mb-1">Jour de retrait</label>
+                            <input type="date" id="client-date" class="w-full text-xs p-2 border border-stone-300 rounded-lg bg-white focus:ring-1 focus:ring-amber-800 focus:outline-none">
+                        </div>
+                        <div>
                             <label class="block text-[11px] font-medium text-stone-600 mb-1">Créneau de retrait (Fermeture 19h)</label>
                             <select id="client-slot" class="w-full text-xs p-2 border border-stone-300 rounded-lg bg-white focus:ring-1 focus:ring-amber-800 focus:outline-none">
                                 <option value="">-- Choisissez un créneau --</option>
-                                <option value="Midi (Retrait dès 11h00)">Midi (Retrait dès 11h00)</option>
-                                <option value="Soir (Retrait dès 17h00)">Soir (Retrait dès 17h00)</option>
+                                <option value="Midi (dès 11h00)">Midi (Retrait dès 11h00)</option>
+                                <option value="Soir (dès 17h00)">Soir (Retrait dès 17h00)</option>
                             </select>
                         </div>
 
@@ -119,7 +123,7 @@
 
     <!-- Modal Admin -->
     <div id="admin-modal" class="hidden fixed inset-0 bg-stone-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-xl p-6 relative">
+        <div class="bg-white rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto shadow-xl p-6 relative">
             <button type="button" onclick="closeAdminModal()" class="absolute top-4 right-4 text-stone-400 hover:text-stone-700 text-lg">
                 <i class="fa-solid fa-xmark"></i>
             </button>
@@ -140,31 +144,40 @@
             <div id="admin-dashboard" class="hidden space-y-6">
                 <div class="flex justify-between items-center border-b pb-3">
                     <div>
-                        <h3 class="font-bold text-base text-stone-900">Espace Gestion - Commandes Utile La Norma</h3>
-                        <p class="text-xs text-stone-500">Synchronisé en direct avec vos clients</p>
+                        <h3 class="font-bold text-base text-stone-900">Récapitulatif des Commandes - Utile La Norma</h3>
+                        <p class="text-xs text-stone-500">Synchronisé en direct (<span id="admin-orders-count">0</span> ligne(s))</p>
                     </div>
                     <button type="button" onclick="logoutAdmin()" class="text-xs text-rose-700 hover:underline font-medium">Déconnexion</button>
                 </div>
 
-                <!-- Commandes en direct -->
-                <div>
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-stone-600 mb-3 flex items-center justify-between">
-                        <span>Commandes en direct (<span id="admin-orders-count">0</span>)</span>
-                    </h4>
-                    <div id="admin-orders-list" class="space-y-3">
-                        <!-- Rempli par Firebase en direct -->
-                    </div>
+                <!-- Tableau Récapitulatif 6 Colonnes -->
+                <div class="overflow-x-auto border border-stone-200 rounded-xl">
+                    <table class="w-full text-left border-collapse text-xs">
+                        <thead>
+                            <tr class="bg-stone-100 text-stone-700 uppercase text-[11px] border-b border-stone-200">
+                                <th class="py-2.5 px-3 font-bold">Nb personnes</th>
+                                <th class="py-2.5 px-3 font-bold">Nom</th>
+                                <th class="py-2.5 px-3 font-bold">Formule</th>
+                                <th class="py-2.5 px-3 font-bold">Jour</th>
+                                <th class="py-2.5 px-3 font-bold">Prêt d'appareil</th>
+                                <th class="py-2.5 px-3 font-bold">Téléphone</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-orders-tbody" class="divide-y divide-stone-100">
+                            <!-- Rempli dynamiquement par JS -->
+                        </tbody>
+                    </table>
                 </div>
 
                 <!-- Générateur de QR Code -->
                 <div class="border-t pt-4">
                     <h4 class="font-bold text-xs uppercase tracking-wider text-stone-600 mb-2">Générateur QR Code Magasin</h4>
                     <p class="text-xs text-stone-500 mb-3">Imprimez ce QR code à afficher sur votre comptoir ou vitrine.</p>
-                    <div class="flex gap-2">
+                    <div class="flex gap-2 max-w-md">
                         <input type="text" id="qr-label" value="Vitrine Magasin" class="text-xs p-2 border border-stone-300 rounded-lg flex-grow">
                         <button type="button" onclick="generateQRCode()" class="bg-stone-900 text-white text-xs px-4 py-2 rounded-lg font-medium">Générer</button>
                     </div>
-                    <div id="qrcode-container" class="mt-4 flex justify-center bg-stone-50 p-4 rounded-xl border border-stone-200"></div>
+                    <div id="qrcode-container" class="mt-4 flex justify-center bg-stone-50 p-4 rounded-xl border border-stone-200 max-w-md"></div>
                 </div>
             </div>
         </div>
@@ -172,17 +185,35 @@
 
     <!-- Script Application & Base de données Firebase -->
     <script>
-        // Configuration Firebase Utile La Norma
         const firebaseConfig = {
             databaseURL: "https://utile-la-norma-default-rtdb.europe-west1.firebasedatabase.app/"
         };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
+        const formulaStyles = {
+            'fondue': {
+                badgeClass: 'bg-amber-100 text-amber-900 border border-amber-300',
+                rowClass: 'bg-amber-50/40'
+            },
+            'plateau-charcuterie': {
+                badgeClass: 'bg-rose-100 text-rose-900 border border-rose-300',
+                rowClass: 'bg-rose-50/40'
+            },
+            'raclette': {
+                badgeClass: 'bg-sky-100 text-sky-900 border border-sky-300',
+                rowClass: 'bg-sky-50/40'
+            },
+            'raclette-mixte': {
+                badgeClass: 'bg-emerald-100 text-emerald-900 border border-emerald-300',
+                rowClass: 'bg-emerald-50/40'
+            }
+        };
+
         let catalog = {
             products: [
                 { id: 'fondue', name: 'Fondue', price: 6.00, desc: '50% Beaufort, 25% Montagnard (Gruyère de Savoie), 25% Comté. Le pain est offert.' },
-                { id: 'fondue-gourmande', name: 'Fondue gourmande', price: 9.00, desc: 'Même base de fromages + 2 tranches de pavé au cèpe, 2 tranches de pavé piment, 2 tranches de bacon et 2 tranches de coppa de Savoie. Le pain est offert.' },
+                { id: 'plateau-charcuterie', name: 'Plateau charcuterie', price: 3.00, desc: '2 tranches de pavé aux cèpes, 2 tranches de pavé aux piments, 2 tranches de bacon de Savoie, 2 tranches de coppa de Savoie et 2 tranches de rosette.' },
                 { id: 'raclette', name: 'Raclette', price: 11.00, desc: '200g de raclette de Savoie, 1 tranche de jambon blanc, 1 tranche de jambon sec de Savoie, 2 tranches de coppa de Savoie, 2 tranches de bacon de Savoie, 2 tranches de rosette et 2 tranches de viande des Grisons.' },
                 { id: 'raclette-mixte', name: 'Raclette mixte', price: 11.00, desc: '200g de raclette de Savoie, 1 tranche de jambon blanc, 1 tranche de jambon sec de Savoie, 2 tranches de coppa de Savoie, 2 tranches de bacon de Savoie, 2 tranches de rosette et 2 tranches de viande des Grisons.' }
             ]
@@ -243,7 +274,7 @@
             } else {
                 cart.push({ id: product.id, name: product.name, price: product.price, qty: qty, type: 'formula' });
             }
-            qtyInput.value = 0; 
+            qtyInput.value = 0;
             updateCartDisplay();
         }
 
@@ -306,6 +337,7 @@
             }
             const name = document.getElementById('client-name').value.trim();
             const phone = document.getElementById('client-phone').value.trim();
+            const dateVal = document.getElementById('client-date').value;
             const slot = document.getElementById('client-slot').value;
 
             if (!name) {
@@ -318,6 +350,11 @@
                 document.getElementById('client-phone').focus();
                 return;
             }
+            if (!dateVal) {
+                alert("Veuillez choisir un jour de retrait.");
+                document.getElementById('client-date').focus();
+                return;
+            }
             if (!slot) {
                 alert("Veuillez choisir un créneau de retrait (Midi ou Soir).");
                 document.getElementById('client-slot').focus();
@@ -325,13 +362,13 @@
             }
 
             const loanDevice = document.getElementById('loan-device').value;
-
             const newOrderKey = db.ref('orders').push().key;
             const newOrder = {
                 id: 'CMD-' + Math.floor(1000 + Math.random() * 9000),
                 firebaseKey: newOrderKey,
                 client: name,
                 phone: phone,
+                day: dateVal,
                 slot: slot,
                 loanDevice: loanDevice,
                 items: [...cart],
@@ -354,7 +391,6 @@
             });
         }
 
-        // Écoute en direct des commandes depuis Firebase
         db.ref('orders').on('value', (snapshot) => {
             const data = snapshot.val();
             globalOrders = [];
@@ -364,13 +400,11 @@
                 });
                 globalOrders.reverse();
             }
-            document.getElementById('admin-orders-count').textContent = globalOrders.length;
-            if(!document.getElementById('admin-dashboard').classList.contains('hidden')) {
+            if (!document.getElementById('admin-dashboard').classList.contains('hidden')) {
                 renderAdminOrders();
             }
         });
 
-        // Admin functions
         function openAdminLogin() {
             document.getElementById('admin-modal').classList.remove('hidden');
             document.getElementById('admin-login-screen').classList.remove('hidden');
@@ -399,47 +433,48 @@
             document.getElementById('admin-login-screen').classList.remove('hidden');
         }
 
-        function renderAdminOrders() {
-            const container = document.getElementById('admin-orders-list');
+        function formatDayDisplay(order) {
+            const d = order.day ? order.day : 'Date non précisée';
+            const s = order.slot ? ` (${order.slot})` : '';
+            return `${d}${s}`;
+        }
 
-            if (globalOrders.length === 0) {
-                container.innerHTML = `<p class="text-stone-400 text-xs text-center py-4">Aucune commande pour le moment.</p>`;
+        function renderAdminOrders() {
+            const tbody = document.getElementById('admin-orders-tbody');
+            const rows = [];
+
+            globalOrders.forEach((o) => {
+                const items = Array.isArray(o.items) ? o.items : [];
+                items.forEach((item) => {
+                    const style = formulaStyles[item.id] || {
+                        badgeClass: 'bg-stone-100 text-stone-800 border border-stone-300',
+                        rowClass: ''
+                    };
+                    rows.push(`
+                        <tr class="${style.rowClass} hover:bg-stone-50 transition">
+                            <td class="py-2.5 px-3 font-bold text-stone-900">${item.qty}</td>
+                            <td class="py-2.5 px-3 font-medium text-stone-800">${o.client || '-'}</td>
+                            <td class="py-2.5 px-3">
+                                <span class="inline-block px-2 py-0.5 rounded-md font-bold text-[11px] ${style.badgeClass}">
+                                    ${item.name}
+                                </span>
+                            </td>
+                            <td class="py-2.5 px-3 text-stone-700">${formatDayDisplay(o)}</td>
+                            <td class="py-2.5 px-3 text-stone-700">${o.loanDevice && o.loanDevice !== 'Aucun' ? o.loanDevice : 'Non'}</td>
+                            <td class="py-2.5 px-3 font-mono text-stone-800">${o.phone || '-'}</td>
+                        </tr>
+                    `);
+                });
+            });
+
+            document.getElementById('admin-orders-count').textContent = rows.length;
+
+            if (rows.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-stone-400 text-xs">Aucune commande pour le moment.</td></tr>`;
                 return;
             }
 
-            container.innerHTML = globalOrders.map((o) => `
-                <div class="bg-stone-50 border border-stone-200 rounded-xl p-3 text-xs space-y-2">
-                    <div class="flex justify-between items-start font-bold">
-                        <span>${o.id} - ${o.client} (${o.phone})</span>
-                        <span class="text-amber-900 bg-amber-100 px-2 py-0.5 rounded">${o.slot}</span>
-                    </div>
-                    <div class="text-stone-600 text-[11px]">
-                        ${o.items.map(i => `• ${i.qty} pers. : ${i.name}`).join('<br>')}
-                        ${o.loanDevice && o.loanDevice !== 'Aucun' ? `<br><strong class="text-amber-800">⚡ Demande : ${o.loanDevice} (Caution 50€)</strong>` : ''}
-                    </div>
-                    <div class="flex justify-between items-center pt-2 border-t border-stone-200 text-[11px]">
-                        <span class="font-bold">Total : ${o.total.toFixed(2)} €</span>
-                        <div class="flex items-center gap-2">
-                            <select onchange="updateOrderStatus('${o.firebaseKey}', this.value)" class="p-1 border rounded bg-white font-medium">
-                                <option ${o.status === 'En attente' ? 'selected' : ''}>En attente</option>
-                                <option ${o.status === 'En préparation' ? 'selected' : ''}>En préparation</option>
-                                <option ${o.status === 'Prête' ? 'selected' : ''}>Prête</option>
-                            </select>
-                            <button type="button" onclick="deleteOrder('${o.firebaseKey}')" class="text-rose-600 hover:text-rose-800"><i class="fa-solid fa-trash"></i></button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function updateOrderStatus(firebaseKey, status) {
-            db.ref('orders/' + firebaseKey).update({ status: status });
-        }
-
-        function deleteOrder(firebaseKey) {
-            if (confirm("Supprimer cette commande ?")) {
-                db.ref('orders/' + firebaseKey).remove();
-            }
+            tbody.innerHTML = rows.join('');
         }
 
         function generateQRCode() {
@@ -458,6 +493,8 @@
         }
 
         window.onload = function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('client-date').value = today;
             renderCatalog();
         };
     </script>
